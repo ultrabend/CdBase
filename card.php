@@ -32,8 +32,8 @@
 					 			}?>
 				</div>
 				<div class="col-md-9">
-					<div class="row titre"><h1 class="page-header"><?php echo "$extract1[aTitle]"; ?></h1></div>
-					<div class="row band"><h2><?php echo "$extract1[band]"; ?></h2></div>
+					<div><h1 class="page-header"><?php echo "$extract1[aTitle]"; ?></h1></div>
+					<div><h2><?php echo "$extract1[band]"; ?></h2></div>
 					<div>
 						<span><strong>Release date : </strong><?php echo "$extract1[aYear]"; ?></span><br>
             <span><strong>Label : </strong><?php echo "$extract1[label]"; ?></span><br>
@@ -43,18 +43,13 @@
           </div>
 				</div>
 			</div>
-		</div>
-</div>
-<br>
-<div class="row">
-	<div class="tabs_framed styled">
-		<div class="inner">
-			<div class="tab-content clearfix">
-				<div class="col-md-1"></div>
-				<div class="col-md-8"></div>
-				<div class="col-md-1"></div>
-				<div class="col-md-2"></div>
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<?php
+						echo"<a href='includes/deletecd.php'><button type='button' class='btn btn-sm btn-danger'>Delete</button></a>";
+					 ?>
+				</div>
 			</div>
 		</div>
-	</div>
 </div>
