@@ -17,6 +17,9 @@
                             <li>
                                 <a href="index.php?state=importcdtitle.php">With album title</a>
                             </li>
+                            <li>
+                                <a href="index.php?state=addCD.php">By yourself</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

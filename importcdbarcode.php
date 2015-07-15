@@ -6,22 +6,24 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-3"></div>
-	    <div class="col-md-6">
+		<div class="col-md-2"></div>
+	    <div class="col-md-4">
 	        <form role='form' method='post' enctype="multipart/form/data">
 	            <div>
-								<img src="img/musicbrainz_logo.png"	>
+								<img src="img/musicbrainz_logo.png">
 								<br>
 								<br>
 								<div class="form-group input-group">
-									<input  class="form-control" name="barcode" placeholder="Barcode..." id='barcode' required="" type="text" />
+									<input class="form-control" name="barcode" placeholder="Barcode..." id='barcode' required="" type="text" />
 									<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
 								</div>
 	            </div>
 	        </form>
 	    </div>
-			<div class="col-md-3"></div>
+			<div class="col-md-6"></div>
 	</div>
+	<br>
+	<br>
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-11">

@@ -1,19 +1,15 @@
 <?php
-
-	require_once('includes/db_connect.php');
+  require_once('includes/functions.php');
 
 	if (isset($_GET['card'])) {
 		$card=$_GET['card'];
-		$_SESSION['card']=$_GET['card'];
-		$fiche = $bdd->query("SELECT brainz_id,cover,aTitle,aYear,nb_tracks,genre,band,label,barcode FROM base WHERE id_album ='$card'");
+		$datas = LoadCard($_GET['card']);
 	}
 	else{
 		echo "Card unkown";
 	}
-	$extract1=$fiche->fetch();
-	$title=preg_replace('#[^0-9a-z]+#i', '-', "$extract1[aTitle]");
+	$title=preg_replace('#[^0-9a-z]+#i', '-', $datas[0]['aTitle']);
 	$_SESSION['album']=$title;
-	//echo "$extract1[band]";
  ?>
 <div id="page-wrapper">
 		<div class="container-fluid">
@@ -32,23 +28,27 @@
 					 			}?>
 				</div>
 				<div class="col-md-9">
-					<div><h1 class="page-header"><?php echo "$extract1[aTitle]"; ?></h1></div>
-					<div><h2><?php echo "$extract1[band]"; ?></h2></div>
+					<div><h1 class="page-header"><?php echo $datas[0]['aTitle']; ?></h1></div>
+					<div><h2><?php echo $datas[0]['band']; ?></h2></div>
 					<div>
-						<span><strong>Release date : </strong><?php echo "$extract1[aYear]"; ?></span><br>
-            <span><strong>Label : </strong><?php echo "$extract1[label]"; ?></span><br>
-            <span><strong>Tracks : </strong><?php echo "$extract1[nb_tracks]"; ?></span><br>
-            <span><strong>genre : </strong><?php echo "$extract1[genre]"; ?></span><br>
-            <span><strong>barcode : </strong><?php echo "$extract1[barcode]"; ?></span>
+						<span><strong>Release date : </strong><?php echo $datas[0]['aYear']; ?></span><br>
+            <span><strong>Label : </strong><?php echo $datas[0]['label']; ?></span><br>
+            <span><strong>Tracks : </strong><?php echo $datas[0]['nb_tracks']; ?></span><br>
+            <span><strong>genre : </strong><?php echo $datas[0]['genre']; ?></span><br>
+            <span><strong>barcode : </strong><?php echo $datas[0]['barcode']; ?></span>
           </div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-10"></div>
 				<div class="col-md-2">
-					<?php
-						echo"<a href='includes/deletecd.php'><button type='button' class='btn btn-sm btn-danger'>Delete</button></a>";
-					 ?>
+          <?php
+          if (isset($_POST['go']) AND $_POST['go']=='Delete') {
+            deleteCD($card);
+          }?>
+          <form method="post">
+             <input type="submit" name="go" value="Delete" class='btn btn-sm btn-danger'>
+           </form>
 				</div>
 			</div>
 		</div>

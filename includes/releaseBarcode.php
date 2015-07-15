@@ -1,10 +1,11 @@
-<?php 
+<?php
+	session_start();
 	include("musicbrainz.php");
 	$instance = new MusicBrainz;
 	error_reporting(0);
 
 ?>
-		<div class="widget-container widget_search styled boxed-velvet">	
+		<div class="widget-container widget_search styled boxed-velvet">
 			<table class='table'>
 				<thead>
 					<tr>
@@ -15,21 +16,18 @@
 						<td>Format</td>
 						<td>Media</td>
 						<td>Tracks</td>
-						<td>Date</td>							
-						<td>Label</td>							
-						<td>Barcode</td>							
-						<td>Import</td>							
+						<td>Date</td>
+						<td>Label</td>
+						<td>Barcode</td>
+						<td>Import</td>
 					</tr>
 				</thead>
 				<tbody>
-			<?php 
+			<?php
 			if (isset($_POST['barcode'])) {
 				$barcode=$_POST['barcode'];
 				$data = $instance->BarcodeSearch($_POST['barcode']);
-				//print_r($data);
 				$i=0;
-				//$count= $data['count'];
-				//for ($i=0; $i < $count; $i++) { 
 					if (isset($data['releases'][$i]['id'])){
 						$_SESSION['barcode'][$i]['id'] = $data['releases'][$i]['id'];
 					}
@@ -69,15 +67,15 @@
 						<td><?php echo $_SESSION['barcode'][$i]['date'];?></td>
 						<td><?php echo $_SESSION['barcode'][$i]['label'];?></td>
 						<td><?php echo $_SESSION['barcode'][$i]['barcode'];?></td>
-						<td><a href="includes/import_by_barcode.php?barcode=<?php echo $barcode; ?>">ok</a></td>
-					</tr><?php 
+						<td><a class='btn btn-sm btn-danger' href="includes/import_by_barcode.php?barcode=<?php echo $barcode; ?>">Save</a></td>
+					</tr><?php
 				?>
 				</tbody>
 			</table>
 			<div>
 <?php 				if (!$_SESSION['barcode'][$i]['id']) {?>
 				<div class='alert alert-warning'><strong><?php echo "NOT FOUND or server overload"; ?></strong></div>
-					
+
 					<?php 		} ?>
 			</div>
 		</div>

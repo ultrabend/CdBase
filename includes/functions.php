@@ -1,5 +1,5 @@
 <?php
-
+  require_once ('medoo.php');
  	function CoverRecup($id,$album){
        // Le chemin de sauvegarde
         $path = '../img/covers/';
@@ -33,9 +33,9 @@
             // Tout est OK
             echo "\nSauvegarde effectuee avec succes.";
             }
-        }
+  }
 
-        function CoverDown($url,$album){
+  function CoverDown($url,$album){
        // Le chemin de sauvegarde
         $path = 'img/covers';
         // L'url du fichier
@@ -69,5 +69,44 @@
             $card=$_SESSION['card'];
             header("Location: index.php?state=card.php&card=$card");
             }
-        }
+  }
+
+  function add_album(){
+      $database = new medoo();
+      $database->insert('base',['aTitle'=>$_POST['album'],'ayear'=>$_POST['year'],'band'=>$_POST['band'],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
+      echo '<div class="alert alert-success">
+            <strong>Well done!</strong> Album successfully add.
+            </div>';
+  }
+
+  function LoadList($limite){
+    $database = new medoo();
+    $list = $database->select('base',['id_album','aTitle','aYear','band','label'],["GROUP"=>'id_album',"ORDER"=>'band ASC',"LIMIT"=>[$limite,10]]);
+    return $list;
+  }
+
+  function albumStat(){
+    $statbase = new medoo();
+    $stat = $statbase->count('base','id_album');
+    return $stat;
+  }
+
+  /*function bandStat(){
+    $statbase = new medoo();
+    $stat = $statbase->count('base',['band']);
+    return $stat;
+  }*/
+
+  function LoadCard($card){
+    $database = new medoo();
+    $list = $database->select('base',['id_band','cover','aTitle','aYear','band','label','nb_tracks','genre','barcode'],['id_album'=>$card]);
+    return $list;
+  }
+
+  function deleteCD($card){
+    $database = new medoo();
+    $database->delete('base',['id_album'=>$card]);
+    header("Location: index.php?state=list.php");
+  }
+
 ?>
