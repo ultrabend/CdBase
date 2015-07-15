@@ -6,7 +6,7 @@ For now it's a simple collection browser with a tool using MusicBrainz to add yo
 If cover are not available you can add another from web url.
 
 Install is very easy, just unzip the files in your www folder and import the Table.sql in a new database.
-Edit the db_connect.php file with the correct login and pass for the database.
+Edit the medoo.php file with the correct login and pass for your database.
 
 I change the design because i don't have enough time to work on that, so i choose a simple but cool bootstrap template from startbootstrap.com
 
