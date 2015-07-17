@@ -81,7 +81,7 @@
 
   function LoadList($limite){
     $database = new medoo();
-    $list = $database->select('base',['id_album','aTitle','aYear','band','label'],["GROUP"=>'id_album',"ORDER"=>'band ASC',"LIMIT"=>[$limite,10]]);
+    $list = $database->select('base',['id_album','aTitle','aYear','band','label'],["GROUP"=>'id_album',"ORDER"=>['band ASC','aYear'],"LIMIT"=>[$limite,10]]);
     return $list;
   }
 

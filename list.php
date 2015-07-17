@@ -32,7 +32,10 @@
 							for ($j=1; $j<=$pagemax ; $j++) {
 								echo " - "; ?>
 								<a href="index.php?state=list.php&limit=<?php echo $j*10 ?>"><?php echo $j ?></a>
-							<?php }	 ?>
+							<?php }
+              	echo " - "; ?>
+                <a href="index.php?state=list.php&limit=<?php echo $limit+10 ?>"> + </a>
+
 				</div>
       </div>
     </div>
@@ -48,6 +51,7 @@
                   <th>Album</th>
                   <th>Date release</th>
                   <th>label</th>
+                  <th>Id</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,6 +75,7 @@
                    <td><?php echo $data['aTitle'];?></td>
                    <td><?php echo $data['aYear'];?></td>
                    <td><?php echo $data['label'];?></td>
+                   <td><?php echo $data['id_album'];?></td>
                  </tr>
                  <?php
                     }
@@ -83,7 +88,9 @@
                   for ($j=1; $j<=$pagemax ; $j++) {
                     echo " - "; ?>
                     <a href="index.php?state=list.php&limit=<?php echo $j*10 ?>"><?php echo $j ?></a>
-                  <?php }	 ?>
+                  <?php }
+                  echo " - "; ?>
+                  <a href="index.php?state=list.php&limit=<?php echo $limit+10 ?>"> + </a>
               </div>
           </div>
 

@@ -2,13 +2,29 @@
 	session_start();
 	require_once('medoo.php');
 	require_once('functions.php');
-	$database = new medoo();
-	$database->insert('base',['brainz_id'=>$_SESSION['barcode'][0]['id'],'aTitle'=>$_SESSION['barcode'][0]['title'],'band'=>$_SESSION['barcode'][0]['artist'],'ayear'=>$_SESSION['barcode'][0]['date'],'barcode'=>$_SESSION['barcode'][0]['barcode'],'format'=>$_SESSION['barcode'][0]['format'],'nb_tracks'=>$_SESSION['barcode'][0]['tracks'],'label'=>$_SESSION['barcode'][0]['label'],'media'=>$_SESSION['barcode'][0]['disc']]);
 
-	CoverRecup($_SESSION['barcode'][0]['id'],$_SESSION['barcode'][0]['title']);
+	if (isset($_GET['count'])) {
+		$i=$_GET['count'];
+		$database = new medoo();
+		$database->insert('base',['brainz_id'=>$_SESSION['album'][$i]['id'],
+		'aTitle'=>$_SESSION['album'][$i]['title'],
+		'band'=>$_SESSION['album'][$i]['artist'],
+		'ayear'=>$_SESSION['album'][$i]['date'],
+		'barcode'=>$_SESSION['album'][$i]['barcode'],
+		'format'=>$_SESSION['album'][$i]['format'],
+		'media'=>$_SESSION['album'][$i]['disc'],
+		'nb_tracks'=>$_SESSION['album'][$i]['tracks'],
+		'label'=>$_SESSION['album'][$i]['label']]);
 
-	$_SESSION['barcode']=array();
+		CoverRecup($_SESSION['album'][$i]['id'],$_SESSION['album'][$i]['title']);
+
+	$_SESSION['album']=array();
 
 	header("Location: ../index.php?state=list.php");
+	}
+	else{
+
+		header("Location: ../index.php?state=importcdbarcode.php");
+	}
 
 ?>

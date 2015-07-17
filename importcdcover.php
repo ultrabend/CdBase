@@ -1,4 +1,6 @@
-<?php include('includes/functions.php');
+<?php
+  session_start(); 
+  include('includes/functions.php');
  ?>
  <div id="page-wrapper">
 	<div class="row">

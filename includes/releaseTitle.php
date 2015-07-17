@@ -3,7 +3,8 @@
 	$_SESSION['album']=array();
 	include('musicbrainz.php');
 	$instance = new MusicBrainz;
-	error_reporting(0);?>
+	error_reporting(0);
+	?>
 		<div class="widget-container widget_search styled boxed-velvet">
 			<table class='table'>
 				<thead>
@@ -75,7 +76,7 @@
 					else {
 						$country='';
 					}
-						?>
+				?>
 					<tr>
 						<td><?php echo $i+1; ?></td>
 						<td><?php echo $_SESSION['album'][$i]['id']; ?></td>
@@ -95,7 +96,7 @@
 			</table>
 			<div>
 <?php 				if ($count==0) {?>
-				<div class='alert alert-warning'><strong><?php echo "server overload"; ?></strong></div>
+				<div class='alert alert-warning'><strong><?php echo "MusicBrainz server timeout"; ?></strong></div>
 
 					<?php 		} ?>
 			</div>

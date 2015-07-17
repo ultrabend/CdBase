@@ -1,8 +1,10 @@
 <?php
+session_start();
   require_once('includes/functions.php');
 
 	if (isset($_GET['card'])) {
 		$card=$_GET['card'];
+		$_SESSION['card']=$_GET['card'];
 		$datas = LoadCard($_GET['card']);
 	}
 	else{
