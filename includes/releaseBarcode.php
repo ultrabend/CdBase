@@ -1,16 +1,8 @@
-<?php
-	session_start();
-	$_SESSION['album']=array();
-	include('musicbrainz.php');
-	$instance = new MusicBrainz;
-	error_reporting(0);
-	?>
 		<div class="widget-container widget_search styled boxed-velvet">
 			<table class='table'>
 				<thead>
 					<tr>
 						<td></td>
-						<td>Cd Id</td>
 						<td>Release</td>
 						<td>Artist</td>
 						<td>Format</td>
@@ -26,6 +18,7 @@
 				<tbody>
 			<?php
 			if (isset($_POST['barcode'])) {
+				$instance = new MusicBrainz;
 				$data = $instance->BarcodeSearch($_POST['barcode']);
 				$count= $data['count'];
 				for ($i=0; $i < $count; $i++) {
@@ -40,6 +33,9 @@
 					}
 					if (isset($data['releases'][$i]['date'])) {
 						$_SESSION['album'][$i]['date'] = $data['releases'][$i]['date'];
+					}
+					else{
+						$_SESSION['album'][$i]['date'] = "";
 					}
 					if (isset($data['releases'][$i]['barcode'])) {
 						$_SESSION['album'][$i]['barcode'] = $data['releases'][$i]['barcode'];
@@ -65,7 +61,6 @@
 				?>
 					<tr>
 						<td><?php echo $i+1; ?></td>
-						<td><?php echo $_SESSION['album'][$i]['id']; ?></td>
 						<td><?php echo $_SESSION['album'][$i]['title']; ?></td>
 						<td><?php echo $_SESSION['album'][$i]['artist'];?></td>
 						<td><?php echo $_SESSION['album'][$i]['format'];?></td>
@@ -77,15 +72,15 @@
 						<td><?php echo $_SESSION['album'][$i]['label'];?></td>
 						<td><a class='btn btn-sm btn-warning' href="includes/import_by_barcode.php?count=<?php echo $i; ?>">ok</a></td>
 					</tr><?php
-				}
-				?>
+				}		?>
 				</tbody>
 			</table>
 			<div>
-<?php 				if ($count==0) {?>
-				<div class='alert alert-warning'><strong><?php echo "MusicBrainz server timeout"; ?></strong></div>
-
-					<?php 		} ?>
+			<?php
+				if ($count==0) {
+				trigger_error('no result', E_USER_WARNING);?>
+				<div class='alert alert-warning'><strong><?php echo "MusicBrainz server timeout or no CD in database"; ?></strong></div>
+			<?php 	} ?>
 			</div>
 		</div>
 		<?php }	 ?>

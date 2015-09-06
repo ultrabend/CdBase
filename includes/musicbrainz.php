@@ -15,8 +15,8 @@ class MusicBrainz {
         return $response;
     }
 
-    public function ReleaseSearch($release, $fmt = 'json') {
-        $responseR = file_get_contents("http://musicbrainz.org/ws/2/release/?query=release:".urlencode($release)."&fmt=$fmt");
+    public function ReleaseSearch($release, $artist, $fmt = 'json') {
+        $responseR = file_get_contents("http://musicbrainz.org/ws/2/release/?query=release:".urlencode($release)."&artist=".urlencode($artist)."&fmt=".$fmt);
         if ($fmt == 'json') {
             $responseR = json_decode($responseR, JSON_FORCE_OBJECT);
         }
@@ -24,12 +24,13 @@ class MusicBrainz {
     }
 
     public function DiscSearch($discid, $fmt = 'json') {
-        $responseD = file_get_contents("http://musicbrainz.org/ws/2/release/".urlencode($discid)."?inc=artists+recordings&fmt=$fmt");
+        $responseD = file_get_contents("http://musicbrainz.org/ws/2/release/".urlencode($discid)."?inc=recordings&fmt=$fmt");
         if ($fmt == 'json') {
             $responseD = json_decode($responseD, JSON_FORCE_OBJECT);
         }
         return $responseD;
     }
+
     public function BarcodeSearch($barcode, $fmt= 'json'){
         $responseB = file_get_contents("http://musicbrainz.org/ws/2/release?query=barcode:".urlencode($barcode)."&fmt=$fmt");
         if ($fmt == 'json') {
@@ -37,7 +38,6 @@ class MusicBrainz {
         }
         return $responseB;
     }
- 
-
+    //set_error_handler('file_get_contents');
 }
 ?>

@@ -1,4 +1,42 @@
-
+@font-face {
+    font-family: '3dumbregular';
+    src: url('fonts/3dumb-webfont.eot');
+    src: url('fonts/3dumb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/3dumb-webfont.woff2') format('woff2'),
+         url('fonts/3dumb-webfont.woff') format('woff'),
+         url('fonts/3dumb-webfont.ttf') format('truetype'),
+         url('fonts/3dumb-webfont.svg#3dumbregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'immortalregular';
+    src: url('fonts/immortal-webfont.eot');
+    src: url('fonts/immortal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/immortal-webfont.woff2') format('woff2'),
+         url('fonts/immortal-webfont.woff') format('woff'),
+         url('fonts/immortal-webfont.ttf') format('truetype'),
+         url('fonts/immortal-webfont.svg#immortalregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 .shadow{
   box-shadow: 5px 5px 5px #111;
+}
+.style0{
+  font-family: '3dumbregular';
+}
+.style1{
+    font-family: 'immortalregular';
+}
+.page-header{
+  text-align: center;
+}
+.center{
+  text-align: center;
+}
+.error_center{
+  text-align: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
