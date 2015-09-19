@@ -8,7 +8,7 @@
         <meta name="keywords" content="music library" />
         <meta name="author" content="ultrabend" />
 
-        <title>Ultrabend's world</title>
+        <title>CDBase collection</title>
         <!-- Bootstrap CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Theme CSS -->

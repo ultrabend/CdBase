@@ -5,6 +5,7 @@
             <ul class="nav navbar-right top-nav">
               <a href="index.php?page=catalog"><img src="img/catalog.png" alt="Catalog" /></a>
               <a href="index.php?page=byartist"><img src="img/byartist.png" alt="By artist" /></a>
+              <img src="img/hand.png" alt="By artist"/>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
