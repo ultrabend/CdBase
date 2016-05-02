@@ -13,9 +13,9 @@
         <!-- Bootstrap CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Theme CSS -->
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="css/portfolio-item.css" rel="stylesheet">
         <!-- Your CSS -->
-        <link href="style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -35,10 +35,10 @@
           							<?php
           								$file="img/covers/".$title."_front.jpg";
           				 				if (file_exists($file)) {
-          					 				echo"<img class='img-thumbnail' src='img/covers/".$title."_front.jpg' width='100%'>";
+          					 				echo"<img class='img-thumbnail shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
           					 			}
           					 			else{
-          					 				echo"<img class='img-thumbnail' src='img/covers/cdcover.jpg' width='100%'>";
+          					 				echo"<img class='img-thumbnail shadow' src='img/covers/cdcover.jpg' width='100%'>";
           					 				echo"<br>";
           					 				echo"<a href='index.php?page=importcover&album=$title'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
           					 			}?>

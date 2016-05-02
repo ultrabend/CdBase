@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `albums`
 --
 
-CREATE TABLE IF NOT EXISTS `albums` (
+CREATE TABLE IF NOT EXISTS `tracks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_album` int(11) NOT NULL,
   `id_track` tinyint(3) unsigned NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `albums` (
 
 CREATE TABLE IF NOT EXISTS `bands` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `brainz_id` varchar(30) NOT NULL,
+  `brainz_band` varchar(30) NOT NULL,
   `name` varchar(45) NOT NULL,
   `country` varchar(30) NOT NULL,
   `area` varchar(50) DEFAULT NULL,
@@ -58,12 +58,12 @@ CREATE TABLE IF NOT EXISTS `bands` (
 -- Structure de la table `base`
 --
 
-CREATE TABLE IF NOT EXISTS `base` (
+CREATE TABLE IF NOT EXISTS `albums` (
   `id_album` smallint(6) NOT NULL AUTO_INCREMENT,
-  `brainz_id` varchar(40) NOT NULL,
+  `brainz_album` varchar(40) NOT NULL,
   `id_band` smallint(5) unsigned NOT NULL,
-  `aTitle` varchar(80) NOT NULL,
-  `aYear` varchar(12) NOT NULL,
+  `title` varchar(80) NOT NULL,
+  `year` varchar(12) NOT NULL,
   `nb_tracks` tinyint(4) NOT NULL,
   `label` varchar(30) NOT NULL,
   `barcode` varchar(40) DEFAULT NULL,

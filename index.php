@@ -5,7 +5,7 @@
 	}
 	else
 	{
-	        include 'control/home.php';
+	        include 'control/catalog.php';
 	}
 
  ?>

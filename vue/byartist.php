@@ -13,9 +13,9 @@
         <!-- Bootstrap CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Theme CSS -->
-        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="css/portfolio-item.css" rel="stylesheet">
         <!-- Your CSS -->
-        <link href="style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
