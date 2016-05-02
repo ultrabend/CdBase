@@ -24,9 +24,9 @@
 		}
 		// save tracks data
 		$max = $tracks['media'][0]['track-count'];
-		$id_album = $database->select('base','id_album',['brainz_id'=>$_SESSION['album'][$i]['id']]);
+		$id_album = $database->select('albums','id_album',['brainz_album'=>$_SESSION['album'][$i]['id']]);
 		for ($i=0; $i <$max ; $i++) {
-			$database->insert('albums',[
+			$database->insert('tracks',[
 				'id_album'=>$id_album[0],
 				'id_track'=>$tracks['media'][0]['tracks'][$i]['number'],
 				'ncd'=>$tracks['media'][0]['position'],

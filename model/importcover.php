@@ -19,7 +19,7 @@
                 echo "\nImpossible de sauvegarder le fichier.";
                 exit(1);
             }
-            echo "\nSauvegarde effectuee avec succes.";
+            //echo "\nSauvegarde effectuee avec succes.";
             $card=$_SESSION['card'];
             header("Location: index.php?page=card&card=$card");
             }

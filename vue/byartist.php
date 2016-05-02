@@ -82,7 +82,7 @@
                          <?php
                          foreach ($datas as $data) {
                          $i++;
-                         $title=preg_replace('#[^0-9a-z]+#i', '-', $data['aTitle']);
+                         $title=preg_replace('#[^0-9a-z]+#i', '-', $data['title']);
                          ?>
                          <tr>
                            <td><?php echo $i+$limit;?></td>
@@ -96,8 +96,8 @@
                                  echo"<img src='img/covers/cdcover.jpg' width='100px'>";
                                }?></td>
                            <td><?php echo $data['name'];?></td>
-                           <td><?php echo $data['aTitle'];?></td>
-                           <td><?php echo $data['ayear'];?></td>
+                           <td><?php echo $data['title'];?></td>
+                           <td><?php echo $data['year'];?></td>
                            <td><?php echo $data['label'];?></td>
                          </tr>
                          <?php

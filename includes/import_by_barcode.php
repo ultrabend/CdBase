@@ -25,9 +25,9 @@
 		for ($j=0; $j <$_SESSION['album'][$count]['disc'] ; $j++) {
 			$max = $tracks['media'][$j]['track-count'];
 			echo $max;
-			$id_album = $database->select('base','id_album',['brainz_id'=>$_SESSION['album'][$count]['id']]);
+			$id_album = $database->select('albums','id_album',['brainz_album'=>$_SESSION['album'][$count]['id']]);
 			for ($i=0; $i <$max ; $i++) {
-				$database->insert('albums',[
+				$database->insert('tracks',[
 					'id_album'=>$id_album[0],
 					'id_track'=>$tracks['media'][$j]['tracks'][$i]['number'],
 					'ncd'=>$tracks['media'][$j]['position'],

@@ -3,10 +3,10 @@
 
       function LoadList($limite){
         $database = new medoo();
-        $list = $database->select('base',
+        $list = $database->select('albums',
         ["[>]bands" => ["id_band" => "id"]],
-        ['base.id_album','base.aTitle','base.ayear','base.label','bands.name'],
-        ["GROUP"=>'base.id_album',"ORDER"=>['bands.name ASC','base.aYear'],"LIMIT"=>[$limite,10]]);
+        ['albums.id_album','albums.title','albums.year','albums.label','bands.name'],
+        ["GROUP"=>'albums.id_album',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
         return $list;
       }
 

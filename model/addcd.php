@@ -11,7 +11,7 @@
       add_artist($_POST['band']);
       $database = new medoo();
       $id_band = $database->select('bands','id',['name'=>$_POST['band']]);
-      $database->insert('base',['aTitle'=>$_POST['album'],'ayear'=>$_POST['year'],'id_band'=>$id_band[0],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
+      $database->insert('albums',['title'=>$_POST['album'],'year'=>$_POST['year'],'id_band'=>$id_band[0],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
   }
 
 	if (isset($_POST['album'])) {

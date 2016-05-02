@@ -44,10 +44,10 @@
           					 			}?>
           				</div>
           				<div class="col-md-7">
-          					<div><h1 class="page-header"><?php echo $datas[0]['aTitle']; ?></h1></div>
+          					<div><h1 class="page-header"><?php echo $datas[0]['title']; ?></h1></div>
           					<div><h2><?php echo $datas[0]['name']; ?></h2></div>
           					<div>
-          						<span><strong>Release date : </strong><?php echo $datas[0]['aYear']; ?></span><br>
+          						<span><strong>Release date : </strong><?php echo $datas[0]['year']; ?></span><br>
                       <span><strong>Label : </strong><?php echo $datas[0]['label']; ?></span><br>
                       <span><strong>Tracks : </strong><?php echo $datas[0]['nb_tracks']; ?></span><br>
                       <span><strong>barcode : </strong><?php echo $datas[0]['barcode']; ?></span>

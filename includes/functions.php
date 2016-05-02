@@ -83,7 +83,7 @@
       add_artist($_POST['band']);
       $database = new medoo();
       $id_band = $database->select('bands','id',['name'=>$_POST['band']]);
-      $database->insert('base',['aTitle'=>$_POST['album'],'ayear'=>$_POST['year'],'id_band'=>$id_band[0],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
+      $database->insert('album',['title'=>$_POST['album'],'year'=>$_POST['year'],'id_band'=>$id_band[0],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
       echo '<div class="alert alert-success">
             <strong>Well done!</strong> Album successfully add.
             </div>';
@@ -93,10 +93,10 @@
       add_artist($_SESSION['album'][$i]['artist']);
       $database = new medoo();
       $id_band = $database->select('bands','id',['name'=>$_SESSION['album'][$i]['artist']]);
-      $database->insert('base',['brainz_id'=>$_SESSION['album'][$i]['id'],
-  		'aTitle'=>$_SESSION['album'][$i]['title'],
+      $database->insert('albums',['brainz_album'=>$_SESSION['album'][$i]['id'],
+  		'title'=>$_SESSION['album'][$i]['title'],
   		'id_band'=>$id_band[0],
-  		'ayear'=>$_SESSION['album'][$i]['date'],
+  		'year'=>$_SESSION['album'][$i]['date'],
   		'barcode'=>$_SESSION['album'][$i]['barcode'],
   		'format'=>$_SESSION['album'][$i]['format'],
   		'media'=>$_SESSION['album'][$i]['disc'],
@@ -108,10 +108,10 @@
       add_artist($_SESSION['album'][$i]['artist']);
       $database = new medoo();
       $id_band = $database->select('bands','id',['name'=>$_SESSION['album'][$i]['artist']]);
-      $database->insert('base',['brainz_id'=>$_SESSION['album'][$i]['id'],
-      'aTitle'=>$_SESSION['album'][$i]['title'],
+      $database->insert('albums',['brainz_album'=>$_SESSION['album'][$i]['id'],
+      'title'=>$_SESSION['album'][$i]['title'],
       'id_band'=>$id_band[0],
-      'ayear'=>$_SESSION['album'][$i]['date'],
+      'year'=>$_SESSION['album'][$i]['date'],
       'barcode'=>$_SESSION['album'][$i]['barcode'],
       'format'=>$_SESSION['album'][$i]['format'],
       'media'=>$_SESSION['album'][$i]['disc'],
@@ -126,25 +126,25 @@
 
   function LoadList($limite){
     $database = new medoo();
-    $list = $database->select('base',
+    $list = $database->select('albums',
     ["[>]bands" => ["id_band" => "id"]],
-    ['base.id_album','base.aTitle','base.ayear','base.label','bands.name'],
-    ["GROUP"=>'base.id_album',"ORDER"=>['bands.name ASC','base.aYear'],"LIMIT"=>[$limite,10]]);
+    ['albums.id_album','albums.title','albums.year','albums.label','bands.name'],
+    ["GROUP"=>'albums.id_album',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
     return $list;
   }
 
   function albumStat(){
     $statbase = new medoo();
-    $stat = $statbase->count('base','id_album');
+    $stat = $statbase->count('albums','id_album');
     return $stat;
   }
 
 
   function LoadCard($card){
     $database = new medoo();
-    $list = $database->select('base',
+    $list = $database->select('albums',
     ["[>]bands" => ["id_band" => "id"]],
-    ['base.aTitle','base.aYear','bands.name','base.label','base.nb_tracks','base.genre','base.barcode'],['id_album'=>$card]);
+    ['albums.title','albums.year','bands.name','albums.label','albums.nb_tracks','albums.genre','albums.barcode'],['id_album'=>$card]);
     return $list;
   }
 
@@ -158,8 +158,8 @@
 
   function deleteCD($card){
     $database = new medoo();
+    $database->delete('tracks',['id_album'=>$card]);
     $database->delete('albums',['id_album'=>$card]);
-    $database->delete('base',['id_album'=>$card]);
     header("Location: index.php?state=list.php");
   }
 

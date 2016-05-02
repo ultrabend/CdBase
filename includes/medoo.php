@@ -14,7 +14,7 @@ class medoo
 
 	protected $charset='utf8';
 
-	protected $database_name='mydb';
+	protected $database_name='cdbase';
 
 	// For MySQL, MariaDB, MSSQL, Sybase, PostgreSQL, Oracle
 	protected $server='localhost';

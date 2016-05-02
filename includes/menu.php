@@ -22,13 +22,13 @@
                       </ul>
                   </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#Add"><i class="fa fa-fw fa-edit"></i> Add CD <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#Add"><i class="fa fa-fw fa-edit"></i> Add a CD <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="Add" class="collapse">
                             <li>
-                                <a href="index.php?page=barcode">With barcode</a>
+                                <a href="index.php?page=barcode">By barcode</a>
                             </li>
                             <li>
-                                <a href="index.php?page=bytitle">With album title</a>
+                                <a href="index.php?page=bytitle">By album title</a>
                             </li>
                             <li>
                                 <a href="index.php?page=addcd">By yourself</a>

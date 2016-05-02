@@ -4,24 +4,24 @@
 
   function LoadCard($card){
     $database = new medoo();
-    $list = $database->select('base',
+    $list = $database->select('albums',
     ["[>]bands" => ["id_band" => "id"]],
-    ['base.aTitle','base.aYear','bands.name','base.label','base.nb_tracks','base.genre','base.barcode'],['id_album'=>$card]);
+    ['albums.title','albums.year','bands.name','albums.label','albums.nb_tracks','albums.genre','albums.barcode'],['id_album'=>$card]);
     return $list;
   }
 
   function LoadTracks($card){
     $database = new medoo();
-    $tracks = $database->select('base',
-    ["[>]albums" => "id_album"],
-    ['albums.id_track','albums.ncd','albums.title','albums.duration'],['id_album'=>$card]);
+    $tracks = $database->select('albums',
+    ["[>]tracks" => "id_album"],
+    ['tracks.id_track','tracks.ncd','tracks.title','tracks.duration'],['id_album'=>$card]);
     return $tracks;
   }
 
   function deleteCD($card){
     $database = new medoo();
+    $database->delete('tracks',['id_album'=>$card]);
     $database->delete('albums',['id_album'=>$card]);
-    $database->delete('base',['id_album'=>$card]);
     header("Location: index.php?state=list.php");
   }
 
@@ -34,7 +34,7 @@
 	else{
 		echo "Card unkown";
 	}
-	$title=preg_replace('#[^0-9a-z]+#i', '-', $datas[0]['aTitle']);
+	$title=preg_replace('#[^0-9a-z]+#i', '-', $datas[0]['title']);
 	$_SESSION['album']=$title;
   $i=-1;
 
