@@ -12,7 +12,7 @@
 
       function albumStat(){
         $statbase = new medoo();
-        $stat = $statbase->count('base','id_album');
+        $stat = $statbase->count('albums','id_album');
         return $stat;
       }
 
