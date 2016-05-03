@@ -9,15 +9,4 @@
         ["bands.name[~]"=>$limite,"ORDER"=>['bands.name ASC']]);
         return $list;
       }
-
-  	if (isset($_GET['limit'])) {
-  		$limit=$_GET['limit'];
-  		}
-  		else{
-  			$limit="A%";
-  		}
-      $datas = LoadList($limit);
-      //$stats = albumStat();
- 	    $i=0;
- 	    //$pagemax =$stats / 10;
 ?>
