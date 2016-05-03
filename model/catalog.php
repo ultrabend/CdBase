@@ -6,7 +6,7 @@
         $list = $database->select('albums',
         ["[>]bands" => ["band_id" => "id"]],
         ['albums.band_id','albums.title','albums.year','albums.label','bands.name','albums.id'],
-        ["GROUP"=>'albums.band_id',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
+        ["GROUP"=>'albums.id',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
         return $list;
       }
 

@@ -6,7 +6,7 @@
     $database = new medoo();
     $list = $database->select('albums',
     ["[>]bands" => ["band_id" => "id"]],
-    ['albums.genre','albums.title','albums.year','albums.label','bands.name','albums.nb_tracks','albums.barcode'],['albums.id'=>$card] );
+    ['albums.genre','albums.title','albums.year','albums.label','bands.name','albums.nb_tracks','albums.barcode','albums.brainz_album'],['albums.id'=>$card] );
     return $list;
   }
 
@@ -23,22 +23,4 @@
     $database->delete('albums',['id'=>$card]);
     header("Location: index.php?state=list.php");
   }
-
-	if (isset($_GET['card'])) {
-		$card=$_GET['card'];
-		$_SESSION['card']=$_GET['card'];
-		$datas = LoadCard($_GET['card']);
-    $tracks = LoadTracks($_GET['card']);
-  }
-	else{
-		echo "Card unkown";
-	}
-	$title=preg_replace('#[^0-9a-z]+#i', '-', $datas[0]['title']);
-	$_SESSION['album']=$title;
-  $i=-1;
-
-  if (isset($_POST['go']) AND $_POST['go']=='Delete') {
-    deleteCD($card);
-  }
-
  ?>

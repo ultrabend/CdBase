@@ -8,7 +8,7 @@
         <meta name="keywords" content="music library" />
         <meta name="author" content="ultrabend" />
 
-        <title>Ultrabend's world</title>
+        <title><?php echo $datas[0]['title']; ?></title>
 
         <!-- Bootstrap CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,43 +23,57 @@
     </head>
 
     <body>
-
-        <div id="wrapper">
+      <div id="wrapper">
         <?php include('includes/menu.php');?>
-
           <div id="page-wrapper">
-          		<div class="container-fluid">
-          			<div class="row">
-          				<br>
-          				<div class="col-md-3">
-          							<?php
-          								$file="img/covers/".$title."_front.jpg";
-          				 				if (file_exists($file)) {
-          					 				echo"<img class='shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
-          					 			}
-          					 			else{
-          					 				echo"<img class='shadow' src='img/covers/cdcover.jpg' width='100%'>";
-          					 				echo"<br>";
-          					 				echo"<a href='index.php?page=importcover&album=$title'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
-          					 			}?>
-          				</div>
-          				<div class="col-md-7">
-          					<div><h1 class="page-header"><?php echo $datas[0]['title']; ?></h1></div>
-          					<div><h2><?php echo $datas[0]['name']; ?></h2></div>
+            <div class="container-fluid">
+              <div class="row">
+                <div><h1 class="page-header"><?php echo $datas[0]['title']; ?></h1></div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <table>
+                    <tr>
+                      <td>
+                        <?php
+                          $file="img/covers/".$title."_front.jpg";
+                          if (file_exists($file)) {
+                            echo"<img class='shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
+                          }
+                          else{
+                            echo"<img class='shadow' src='img/covers/cdcover.jpg' width='100%'>";
+                            ?>
+                            <br>
+                            <?php
+                            echo"<br>";
+                            echo"<a href='index.php?page=importcover&album=$title'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
+                          }?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <br>
+                        <form method="post">
+                           <input type="submit" name="go" value="Delete" class='btn btn-sm btn-danger'>
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-7">
+                  <div class="row">
+                    <div><h2><?php echo $datas[0]['name']; ?></h2></div>
           					<div>
           						<span><strong>Release date : </strong><?php echo $datas[0]['year']; ?></span><br>
                       <span><strong>Label : </strong><?php echo $datas[0]['label']; ?></span><br>
                       <span><strong>Tracks : </strong><?php echo $datas[0]['nb_tracks']; ?></span><br>
                       <span><strong>barcode : </strong><?php echo $datas[0]['barcode']; ?></span>
                     </div>
-          				</div>
-                  <div class="col-md-2">
-                    <a href='#'><button type='button' class='btn btn-sm btn-warning'>Print</button></a>
                   </div>
-          			</div>
-                <hr>
-                <div class="row">
-                  <div class="col-md-6">
+                  <div class="row">
+                    <div><h3 class="page-header">Tracks</h3></div>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
@@ -85,20 +99,12 @@
                       </table>
                     </div>
                   </div>
-                  <div class="col-md-6"></div>
                 </div>
-                <hr>
-          			<div class="row">
-          				<div class="col-md-10"></div>
-          				<div class="col-md-2">
-                    <form method="post">
-                       <input type="submit" name="go" value="Delete" class='btn btn-sm btn-danger'>
-                     </form>
-          				</div>
-          			</div>
-          		</div>
-          </div>
+                <div class="col-md-1">
 
+                </div>
+              </div>
+            </div>
         </div>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>

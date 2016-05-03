@@ -15,8 +15,4 @@
       $id_band = $database->select('bands','id',['name'=>$_POST['band']]);
       $database->insert('albums',['title'=>$_POST['album'],'year'=>$_POST['year'],'band_id'=>$id_band[0],'nb_tracks'=>$_POST['tracks'],'label'=>$_POST['label'],'barcode'=>$_POST['barcode']]);
   }
-
-	if (isset($_POST['album'])) {
-		add_album();
-	}
 ?>
