@@ -4,15 +4,15 @@
       function LoadList($limite){
         $database = new medoo();
         $list = $database->select('albums',
-        ["[>]bands" => ["id_band" => "id"]],
-        ['albums.id_album','albums.title','albums.year','albums.label','bands.name'],
-        ["GROUP"=>'albums.id_album',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
+        ["[>]bands" => ["band_id" => "id"]],
+        ['albums.band_id','albums.title','albums.year','albums.label','bands.name','albums.id'],
+        ["GROUP"=>'albums.band_id',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
         return $list;
       }
 
       function albumStat(){
         $statbase = new medoo();
-        $stat = $statbase->count('albums','id_album');
+        $stat = $statbase->count('albums','id');
         return $stat;
       }
 

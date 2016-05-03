@@ -68,7 +68,7 @@
                          ?>
                          <tr>
                            <td><?php echo $i+$limit;?></td>
-                           <td><a href="index.php?page=card&card=<?php echo $data['id_album']; ?>">
+                           <td><a href="index.php?page=card&card=<?php echo $data['id']; ?>">
                              <?php
                                $file="img/covers/".$title."_front.jpg";
                                if (file_exists($file)) {

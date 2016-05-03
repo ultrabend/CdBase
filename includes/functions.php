@@ -95,7 +95,7 @@
       $id_band = $database->select('bands','id',['name'=>$_SESSION['album'][$i]['artist']]);
       $database->insert('albums',['brainz_album'=>$_SESSION['album'][$i]['id'],
   		'title'=>$_SESSION['album'][$i]['title'],
-  		'id_band'=>$id_band[0],
+  		'band_id'=>$id_band[0],
   		'year'=>$_SESSION['album'][$i]['date'],
   		'barcode'=>$_SESSION['album'][$i]['barcode'],
   		'format'=>$_SESSION['album'][$i]['format'],
@@ -110,7 +110,7 @@
       $id_band = $database->select('bands','id',['name'=>$_SESSION['album'][$i]['artist']]);
       $database->insert('albums',['brainz_album'=>$_SESSION['album'][$i]['id'],
       'title'=>$_SESSION['album'][$i]['title'],
-      'id_band'=>$id_band[0],
+      'band_id'=>$id_band[0],
       'year'=>$_SESSION['album'][$i]['date'],
       'barcode'=>$_SESSION['album'][$i]['barcode'],
       'format'=>$_SESSION['album'][$i]['format'],
@@ -121,45 +121,19 @@
   function download_tracks($id){
     $instance2 = new MusicBrainz;
     $data_tracks = $instance2->DiscSearch($id);
+    // if error try again
+    if (!$data_tracks) {
+      while(!$data_tracks){
+        $data_tracks = download_tracks($_SESSION['album'][$count]['id']);
+      }
+    }
     return $data_tracks;
-  }
-
-  function LoadList($limite){
-    $database = new medoo();
-    $list = $database->select('albums',
-    ["[>]bands" => ["id_band" => "id"]],
-    ['albums.id_album','albums.title','albums.year','albums.label','bands.name'],
-    ["GROUP"=>'albums.id_album',"ORDER"=>['bands.name ASC','albums.year'],"LIMIT"=>[$limite,10]]);
-    return $list;
-  }
-
-  function albumStat(){
-    $statbase = new medoo();
-    $stat = $statbase->count('albums','id_album');
-    return $stat;
-  }
-
-
-  function LoadCard($card){
-    $database = new medoo();
-    $list = $database->select('albums',
-    ["[>]bands" => ["id_band" => "id"]],
-    ['albums.title','albums.year','bands.name','albums.label','albums.nb_tracks','albums.genre','albums.barcode'],['id_album'=>$card]);
-    return $list;
-  }
-
-  function LoadTracks($card){
-    $database = new medoo();
-    $tracks = $database->select('base',
-    ["[>]albums" => "id_album"],
-    ['albums.id_track','albums.ncd','albums.title','albums.duration'],['id_album'=>$card]);
-    return $tracks;
   }
 
   function deleteCD($card){
     $database = new medoo();
-    $database->delete('tracks',['id_album'=>$card]);
-    $database->delete('albums',['id_album'=>$card]);
+    $database->delete('tracks',['album_id'=>$card]);
+    $database->delete('albums',['id'=>$card]);
     header("Location: index.php?state=list.php");
   }
 

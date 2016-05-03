@@ -4,16 +4,10 @@
       function LoadList($limite){
         $database = new medoo();
         $list = $database->select('albums',
-        ["[>]bands" => ["id_band" => "id"]],
-        ['albums.id_album','albums.title','albums.year','albums.label','bands.name'],
+        ["[>]bands" => ["band_id" => "id"]],
+        ['albums.band_id','albums.title','albums.year','albums.label','bands.name','albums.id'],
         ["bands.name[~]"=>$limite,"ORDER"=>['bands.name ASC']]);
         return $list;
-      }
-
-      function albumStat(){
-        $statbase = new medoo();
-        $stat = $statbase->count('albums','id_album');
-        return $stat;
       }
 
   	if (isset($_GET['limit'])) {

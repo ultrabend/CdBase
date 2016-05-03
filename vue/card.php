@@ -35,10 +35,10 @@
           							<?php
           								$file="img/covers/".$title."_front.jpg";
           				 				if (file_exists($file)) {
-          					 				echo"<img class='img-thumbnail shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
+          					 				echo"<img class='shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
           					 			}
           					 			else{
-          					 				echo"<img class='img-thumbnail shadow' src='img/covers/cdcover.jpg' width='100%'>";
+          					 				echo"<img class='shadow' src='img/covers/cdcover.jpg' width='100%'>";
           					 				echo"<br>";
           					 				echo"<a href='index.php?page=importcover&album=$title'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
           					 			}?>
@@ -54,7 +54,7 @@
                     </div>
           				</div>
                   <div class="col-md-2">
-
+                    <a href='#'><button type='button' class='btn btn-sm btn-warning'>Print</button></a>
                   </div>
           			</div>
                 <hr>

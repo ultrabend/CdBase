@@ -16,18 +16,12 @@
 		CoverRecup($_SESSION['album'][$i]['id'],$_SESSION['album'][$i]['title']);
 		// download album tracks
 		$tracks = download_tracks($id);
-		// if error try again
-		if (!$tracks) {
-			while(!$tracks){
-					$tracks = download_tracks($id);
-			}
-		}
 		// save tracks data
 		$max = $tracks['media'][0]['track-count'];
-		$id_album = $database->select('albums','id_album',['brainz_album'=>$_SESSION['album'][$i]['id']]);
+		$id_album = $database->select('albums','id',['brainz_album'=>$_SESSION['album'][$i]['id']]);
 		for ($i=0; $i <$max ; $i++) {
 			$database->insert('tracks',[
-				'id_album'=>$id_album[0],
+				'album_id'=>$id_album[0],
 				'id_track'=>$tracks['media'][0]['tracks'][$i]['number'],
 				'ncd'=>$tracks['media'][0]['position'],
 				'title'=>$tracks['media'][0]['tracks'][$i]['title'],

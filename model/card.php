@@ -5,23 +5,22 @@
   function LoadCard($card){
     $database = new medoo();
     $list = $database->select('albums',
-    ["[>]bands" => ["id_band" => "id"]],
-    ['albums.title','albums.year','bands.name','albums.label','albums.nb_tracks','albums.genre','albums.barcode'],['id_album'=>$card]);
+    ["[>]bands" => ["band_id" => "id"]],
+    ['albums.genre','albums.title','albums.year','albums.label','bands.name','albums.nb_tracks','albums.barcode'],['albums.id'=>$card] );
     return $list;
   }
 
   function LoadTracks($card){
     $database = new medoo();
-    $tracks = $database->select('albums',
-    ["[>]tracks" => "id_album"],
-    ['tracks.id_track','tracks.ncd','tracks.title','tracks.duration'],['id_album'=>$card]);
+    $tracks = $database->select('tracks',
+    ['tracks.id_track','tracks.ncd','tracks.title','tracks.duration'],['album_id'=>$card]);
     return $tracks;
   }
 
   function deleteCD($card){
     $database = new medoo();
-    $database->delete('tracks',['id_album'=>$card]);
-    $database->delete('albums',['id_album'=>$card]);
+    $database->delete('tracks',['album_id'=>$card]);
+    $database->delete('albums',['id'=>$card]);
     header("Location: index.php?state=list.php");
   }
 
