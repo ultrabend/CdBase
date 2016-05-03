@@ -1,16 +1,18 @@
 # CdBase
-CdBase is a CD collection library made in HTML5/CSS with bootstrap, php and Mysql.
+CdBase is a CD collection library using HTML5/CSS, bootstrap, php and Mysql.
 
 You can consider that as a first step or a first edition.
-For now it's a simple collection browser using MusicBrainz to add you CDs.
-If cover are not available you can add another from web url.
+For now it's a simple collection browser using MusicBrainz to feed your CD database.
 
-Install is very easy, just unzip the files in your www folder and import the Table.sql in a new database.
-Edit the medoo.php file with the correct login and pass for your database.
+Features:
+  - Search album info, tracks and cover.
+  - If cover are not available you can add another from web url.
+  - Bootstrap responsive design.
 
-Design is not finished, it will be changed soon !
+How to install:
+  - Install is very easy, just unzip the files in your www lamp or wamp folder, import the CdBase.sql in a new database.
+  - Edit the medoo.php file with the correct login and pass for your database.
 
-For the next step i will add tracks data and Band Bio !
 
 See you !
 
