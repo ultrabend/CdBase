@@ -32,16 +32,15 @@
 								 foreach ($albums as $album) {
 								 $i++;
 								 $title=preg_replace('#[^0-9a-z]+#i', '-', $album['title']);
-								 ?>
-								 <tr>
-									 <td><?php //echo $i+$limit;?></td>
-									 <td><img src="../assets/img/covers/th_cdcover.jpg"></td>
-									 <td><?php echo $album['name'];?></td>
-									 <td><?php echo $album['title'];?></td>
-									 <td><?php echo $album['year'];?></td>
-									 <td><?php echo $album['label'];?></td>
-								 </tr>
-								 <?php
+								 
+								 echo "<tr>";
+									echo "<td>".$i++."</td>";
+									echo "<td><img src='".base_url()."/assets/img/covers/th_cdcover.jpg'></td>";
+									echo "<td>".$album['name']."</td>";
+									echo "<td>".$album['title']."</td>";
+									echo "<td>".$album['year']."</td>";
+									echo "<td>".$album['label']."</td>";
+								echo "</tr>";
 										}
 									?>
 							</tbody>

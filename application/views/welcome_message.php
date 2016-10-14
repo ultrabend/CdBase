@@ -75,9 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<code>Version 0.1</code>
 
-		<p>
-			<a href="index.php/Albums">Go !!!</a>
-		</p>
+
 
 	</div>
 

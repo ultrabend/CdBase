@@ -13,13 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <title>CdBase</title>
 
         <!-- Bootstrap CSS -->
-        <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
         <!-- Theme CSS -->
-        <link href="../assets/bootstrap/css/portfolio-item.css" rel="stylesheet">
+        <link href="<?= base_url('assets/bootstrap/css/portfolio-item.css'); ?>" rel="stylesheet">
         <!-- Your CSS -->
-        <link href="../assets/bootstrap/css/style.css" rel="stylesheet">
+        <link href="<?= base_url('assets/bootstrap/css/style.css'); ?>" rel="stylesheet">
         <!-- Custom Fonts -->
-        <link href="../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?= base_url('assets/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
 
         <link rel="icon" href="img/favicon.ico" />
     </head>
@@ -29,19 +29,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../" >CdBase</a>
+                    <a class="navbar-brand" href="<?= base_url(); ?>" >CdBase</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                      <li><a href="index.php/Albums">Collection <span class="sr-only">(current)</span></a></li>
-                      <li><a href="#">Albums by Artists<span class="sr-only">(current)</span></a></li>
+                      <li><a href="<?= site_url('Albums') ?>" >Collection <span class="sr-only">(current)</span></a></li>
+                      <li><a href="<?= site_url('Albums/by_artist') ?>">Albums by Artists<span class="sr-only">(current)</span></a></li>
                       <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add CD <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="index.php?page=barcode">By barcode</a></li>
-                                <li><a href="index.php?page=bytitle">By album title</a></li>
+                                <li><a href="<?= site_url('AddCd/barcode') ?>">By barcode</a></li>
+                                <li><a href="<?= site_url('AddCd/release') ?>">By album title</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="index.php?page=addcd">By yourself</a></li>
+                                <li><a href="<?= site_url('AddCd/manual'); ?>">By yourself</a></li>
                             </ul>
                         </li>
                     </ul>
