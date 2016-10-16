@@ -19,4 +19,5 @@ class Addcd_model extends CI_Model {
                 $this->db->insert('bands', array('name'=>$data));
                 return true;
         }
+
 }

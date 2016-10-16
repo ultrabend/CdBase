@@ -7,7 +7,7 @@
       	<div class="row">
       		<div class="col-md-3 center"><?php echo "<img src=".base_url()."assets/img/musicbrainz_logo.png>" ?></div>
       	    <div class="col-md-5">
-      	        <form role='form' method='post' enctype="multipart/form/data">
+      	        <?php echo form_open('AddCd/release_list', 'role="form"');?>
       	            <div>
       								<br>
       								<br>

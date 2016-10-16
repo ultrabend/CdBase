@@ -4,6 +4,7 @@ class AddCd extends CI_Controller {
         public function __construct()
         {
                 parent::__construct();
+                
                 $this->load->model('Addcd_model');
         }
 
@@ -17,9 +18,33 @@ class AddCd extends CI_Controller {
 
         public function release(){
 
+            $this->load->helper('form');
             $this->load->view('templates/header');
             $this->load->view('release.php');
             $this->load->view('templates/footer.php');
+
+        }
+
+        public function release_list(){
+            
+            $album = $this->input->post('album');
+
+            if (isset($album)) {
+                $datas['albums'] = $this->musicbrainz->release_search($album);
+                $datas['albums'] = $datas['albums']['releases'];
+            }
+            else{
+                redirect('AddCd/release');
+            }
+            $this->load->view('templates/header');
+            $this->load->view('release_list',$datas);
+            $this->load->view('templates/footer.php');
+        }
+
+        public function save_release($id){
+            $this->load->model('Addcd_model');
+            $data = $this->musicbrainz->discsearch($id);
+            print_r($data);die();
 
         }
 
