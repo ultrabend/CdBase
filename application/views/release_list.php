@@ -47,7 +47,7 @@
                       echo "<td></td>";
                     }
                     if (isset($album['artist-credit']['0']['artist']['name'])) {
-                      $_SESSION['album'][$i]['band']=$album['artist-credit']['0']['artist']['name'];
+                      $_SESSION['album'][$i]['band_id']=$album['artist-credit']['0']['artist']['name'];
                       echo "<td>".$album['artist-credit']['0']['artist']['name']."</td>";
                     }
                     else {
@@ -95,7 +95,7 @@
                     else {
                       echo "<td></td>";
                     }?>
-                    <td><a class='btn btn-sm btn-warning' href="<?php echo (site_url('AddCd/save_release/').$album['id']) ?>">ok</a></td>
+                    <td><a class='btn btn-sm btn-warning' href="<?php echo (site_url('AddCd/save_release/').$i) ?>">ok</a></td>
                     <?php
                     echo "</tr>";
                   }

@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class AddCd extends CI_Controller {
 
         public function __construct()
@@ -41,10 +43,17 @@ class AddCd extends CI_Controller {
             $this->load->view('templates/footer.php');
         }
 
-        public function save_release($id){
+        public function save_release($i){
             $this->load->model('Addcd_model');
-            $data = $this->musicbrainz->discsearch($id);
-            print_r($data);die();
+            $tmp = $this->Addcd_model->check_artist($_SESSION['album'][$i]['band_id']);
+            $tmp2 = $tmp['0']['id'];
+            $_SESSION['album'][$i]['band_id'] = $tmp2;
+            $this->Addcd_model->insert_man($_SESSION['album'][$i]);
+            
+            $data = $this->musicbrainz->discsearch($_SESSION['album'][$i]['brainz_album']);
+            //print_r($data);die();
+            redirect('Albums');
+
 
         }
 
@@ -65,15 +74,8 @@ class AddCd extends CI_Controller {
             else{
                 redirect('AddCd/manual');
             }
-            $band = $this->Addcd_model->check_artist($data['band_id']);
-            if (isset($band['0']['id'])) {
-                $data['band_id'] = $band['0']['id'];
-            }
-            else {
-                $this->Addcd_model->insert_artist($data['band_id']);
-                $tmp = $this->Addcd_model->check_artist($data['band_id']);
-                $data['band_id'] = $tmp['0']['id'];
-            }
+            $tmp = $this->Addcd_model->check_artist($data['band_id']);
+            $data['band_id'] = $tmp['0']['id'];
             $this->Addcd_model->insert_man($data);
             redirect('Albums');
         }
