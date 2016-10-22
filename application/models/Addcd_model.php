@@ -5,18 +5,15 @@ class Addcd_model extends CI_Model {
                 $this->db->select('id');
                 $this->db->from('bands');
                 $this->db->where('name',$band);
-                //$query = $this->db->get();
-                $band_id = $this->db->get();
-                $band_id=$band_id->result_array();
+                $band_id = $this->db->get()->result_array();
                 if (!isset($band_id['0'])) {
                         $this->db->insert('bands', array('name'=>$band));
                         $this->db->select('id');
                         $this->db->from('bands');
                         $this->db->where('name',$band);
-                        $band_id = $this->db->get();
+                        $band_id = $this->db->get()->result_array();;
                 }
-                return $band_id;
-                
+                return $band_id['0']['id'];
         }
 
         public function insert_man($data) {
@@ -30,4 +27,11 @@ class Addcd_model extends CI_Model {
                 return true;
         }
 
+        public function check_id($data){
+                $this->db->select('id');
+                $this->db->from('albums');
+                $this->db->where('brainz_album',$data);
+                $query = $this->db->get()->result_array();
+                return $query;
+        }
 }

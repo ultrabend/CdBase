@@ -42,13 +42,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        return $response;
 	    }
 
-	   /* public function BarcodeSearch($barcode, $fmt= 'json'){
-	        $response = file_get_contents("http://musicbrainz.org/ws/2/release?query=barcode:".urlencode($barcode)."&fmt=$fmt");
+	    public function BarcodeSearch($barcode, $fmt= 'json'){
+	        $url = "http://musicbrainz.org/ws/2/release?query=barcode:".urlencode($barcode)."&fmt=$fmt";
+
 	        if ($fmt == 'json') {
-	            $response = json_decode($responseB, JSON_FORCE_OBJECT);
+	          $ch = curl_init();
+	          curl_setopt($ch, CURLOPT_URL, $url);
+	          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	          curl_setopt($ch, CURLOPT_USERAGENT, 'CdBase');
+	          $response = curl_exec ($ch);
+	          curl_close($ch);
+	          $response = json_decode($response, JSON_FORCE_OBJECT);
+	          print_r(error_get_last());
 	        }
 	        return $response;
 	    }
-	    //set_error_handler('file_get_contents');
-	*/}
+	    
+	}
  	?>

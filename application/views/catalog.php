@@ -35,7 +35,7 @@
 								 
 								 echo "<tr>";
 									echo "<td>".$i++."</td>";
-									echo "<td><img src='".base_url()."/assets/img/covers/th_cdcover.jpg'></td>";
+									echo "<td><a href=".site_url('Cards/index/').$album['id']."><img src=".base_url().'/assets/img/covers/th_cdcover.jpg'."></a></td>";
 									echo "<td>".$album['name']."</td>";
 									echo "<td>".$album['title']."</td>";
 									echo "<td>".$album['year']."</td>";
