@@ -45,11 +45,24 @@ class AddCd extends CI_Controller {
         public function save_release($i){
             $this->load->model('Addcd_model');
             $_SESSION['album'][$i]['band_id'] = $this->Addcd_model->check_artist($_SESSION['album'][$i]['band_id']);
-            
             $this->Addcd_model->insert_man($_SESSION['album'][$i]);
+            $id = $this->Addcd_model->check_id($_SESSION['album'][$i]['brainz_album']);
+            $datas = $this->musicbrainz->discsearch($_SESSION['album'][$i]['brainz_album']);
             
-            $data = $this->musicbrainz->discsearch($_SESSION['album'][$i]['brainz_album']);
-            $id  = $this->Addcd_model->check_id($_SESSION['album'][$i]['brainz_album']);
+            
+            $j=0;
+            foreach ($datas['media'] as $CD) {
+                $j++;
+                foreach ($CD['tracks'] as $track) {
+                    $tracks['album_id']=$id['0']['id'];
+                    $tracks['ncd']=$j;
+                    $tracks['id_track']=$track['number'];
+                    $tracks['title']=$track['title'];
+                    $tracks['duration']=$track['length'];
+                    $this->Addcd_model->insert_tracks($tracks);
+                }
+            }
+            $this->Addcd_model->cover_recup($_SESSION['album'][$i]['brainz_album'],$_SESSION['album'][$i]['title']);
             redirect('Cards/index/'.$id[0]['id']);
         }
 
@@ -105,7 +118,21 @@ class AddCd extends CI_Controller {
             $album['band_id'] = $this->Addcd_model->check_artist($album['band_id']);
             $this->Addcd_model->insert_man($album);
             $id  = $this->Addcd_model->check_id($album['brainz_album']);
-            redirect('Cards/index/'.$id[0]['id']);
+            $datas = $this->musicbrainz->discsearch($album['brainz_album']);
+            $i=0;
+            foreach ($datas['media'] as $CD) {
+                $i++;
+                foreach ($CD['tracks'] as $track) {
+                    $tracks['album_id']=$id['0']['id'];
+                    $tracks['ncd']=$i;
+                    $tracks['id_track']=$track['number'];
+                    $tracks['title']=$track['title'];
+                    $tracks['duration']=$track['length'];
+                    $this->Addcd_model->insert_tracks($tracks);
+                }
+            } 
+            $this->Addcd_model->cover_recup($album['brainz_album'],$album['title']);
 
+            redirect('Cards/index/'.$id[0]['id']);
         }
 }        

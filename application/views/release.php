@@ -9,9 +9,9 @@
       	    <div class="col-md-5">
       	        <?php echo form_open('AddCd/release_list', 'role="form"');?>
       	            <div>
+      								<!--<br>
       								<br>
-      								<br>
-      								<!--<div class="form-group input-group">
+      								<div class="form-group input-group">
       	                <input class="form-control" name="artist" placeholder="Artist" id='artist' required="" type="text" />
       	            	</div>-->
                       <br>

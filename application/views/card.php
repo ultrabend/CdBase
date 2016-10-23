@@ -24,9 +24,7 @@
                     <tr>
                       <td>
                         <br>
-                        <form method="post">
-                           <input type="submit" name="go" value="Delete" class='btn btn-sm btn-danger'>
-                        </form>
+                        <a class='btn btn-sm btn-danger' href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>">Delete</a>
                       </td>
                     </tr>
                   </table>
@@ -56,15 +54,16 @@
                         </thead>
                         <tbody>
                           <?php
+                          $i=-1;
                             foreach ($tracks AS $data) {
-                              $i++; ?>
-                              <tr>
-                                <td><?php echo $tracks[$i]['id_track'] ?></td>
-                                <td><?php echo $tracks[$i]['title'] ?></td>
-                                <td><?php echo floor($tracks[$i]['duration'] /60000).' : '.floor(($tracks[$i]['duration'] % 60000)/1000) ?></td>
-                              </tr>
-                        <?php }
-                        //$i++;
+                              $i++; 
+                              echo "<tr>";
+                              echo "<td>".$data['id_track']."</td>";
+                              echo "<td>".$data['title']."</td>";
+                              $tmp = floor($tracks[$i]['duration'] /60000).' : '.floor(($tracks[$i]['duration'] % 60000)/1000);
+                              echo "<td>".$tmp."</td>";
+                              echo "</tr>";
+                              }
                            ?>
                         </tbody>
                       </table>

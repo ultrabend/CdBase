@@ -10,4 +10,13 @@ class Cards_model extends CI_Model {
             $query = $this->db->get();
             return $query->result_array();
         }
+
+        public function get_tracks($id)
+        {
+            $this->db->select('id_track,ncd,title,duration');
+            $this->db->from('tracks');
+            $this->db->where('tracks.album_id', $id);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
 }

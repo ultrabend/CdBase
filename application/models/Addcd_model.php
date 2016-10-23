@@ -34,4 +34,46 @@ class Addcd_model extends CI_Model {
                 $query = $this->db->get()->result_array();
                 return $query;
         }
+
+        public function insert_tracks($data) {
+                $this->db->insert('tracks', $data);
+                return true;
+        }
+
+        public function cover_recup($id,$album){
+       // Le chemin de sauvegarde
+        $path = base_url().'assets/img/covers';
+        // L'url du fichier
+        $url = "http://coverartarchive.org/release/".urlencode($id)."/front";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'CdBase');
+            $response = curl_exec ($ch);
+            curl_close($ch);
+        //if (file_get_contents($url)) {
+            // On coupe le chemin
+            $exp = explode('/',$url);
+            // On recup l'adresse du serveur
+            $serv = $exp[0].'//'.$exp[2];
+            // On recup le nom du fichier
+            $name = array_pop($exp);
+            // On genere le contexte (pour contourner les protections anti-leech)
+            /*$xcontext = stream_context_create(array("http"=>array("header"=>"Referer: ".$serv."\r\n")));
+            // On tente de recuperer l'image
+            $content = file_get_contents($url,false,$xcontext);
+            if ($content === false) {
+                echo "\nImpossible de récuperer le fichier.";
+                exit(1);
+            }*/
+            // Sinon, si c'est bon, on sauvegarde le fichier
+            $album= preg_replace('#[^0-9a-z]+#i', '-', $album);
+            $test = file_put_contents($path.'/'.$album.'_'.$name.'.jpg',$response);
+            if ($test === false) {
+                echo "\nImpossible de sauvegarder le fichier.";
+                exit(1);
+            }
+            return true;
+        }
+    
 }
