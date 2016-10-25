@@ -21,15 +21,8 @@
                         <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
                       </div>
       							</div>
-      	        </form>
+      	        <?php echo '</form>'; ?> 
       	    </div>
       			<div class="col-md-4"></div>
-      	</div>
-      	<br>
-      	<div class="row">
-      		<div class="col-md-1"></div>
-      		<div class="col-md-11">
-      		<br>
-      		</div>
       	</div>
       </div>
