@@ -54,14 +54,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="body">
 		<p>This is the new CdBase made with Code Igniter</p>
 
-		<code>Version 0.1</code>
+		<code>Version 0.2</code>
 
 	</div>
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10"></div>
 		<div class="col-md-1">
-			<a href=" <?php echo site_url('cdking'); ?>">admin</a>
+			<!--<a href=" <?php echo site_url('cdking'); ?>">admin</a>-->
 		</div>
 	</div>
 </div>

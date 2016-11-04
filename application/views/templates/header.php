@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                       <li><a href="<?= site_url('Albums') ?>" >Collection <span class="sr-only">(current)</span></a></li>
-                      <li><a href="<?= site_url('Albums/by_artist') ?>">Albums by Artists<span class="sr-only">(current)</span></a></li>
+                      <li><!--<a href="<?= site_url('Albums/by_artist') ?>">Albums by Artists<span class="sr-only">(current)</span></a>--></li>
                       <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add CD <span class="caret"></span></a>
                             <ul class="dropdown-menu">
