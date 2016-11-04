@@ -16,7 +16,7 @@
                         <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
                       </div>
       							</div>
-      	        </form>
+      	        <?php echo "</form>"; ?> 
       	    </div>
       			<div class="col-md-4"></div>
       	</div>
