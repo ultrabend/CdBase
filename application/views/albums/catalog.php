@@ -33,10 +33,11 @@
 								$title=preg_replace('#[^0-9a-z]+#i', '-', $album['title']);
 								echo "<tr>";
 								echo "<td>".$i."</td>";
+								$album['title'] = str_replace("'", "-", $album['title']);
 								$album['title'] = str_replace(" ", "-", $album['title']);
 								$file="assets/img/covers/".$album['title']."_front.jpg";
                                	if (file_exists($file)) {
-                                	echo "<td><a href=".site_url('Cards/index/').$album['id']."><img class='shadow' width='100px' src=".base_url().'/assets/img/covers/'.$album['title']."_front.jpg"."></a></td>";
+                                	echo "<td><a href=".site_url('Cards/index/').$album['id']."><img class='shadow' width='100px' src=".base_url().$file."></a></td>";
                                	}
                                	else{
                                		echo "<td><a href=".site_url('Cards/index/').$album['id']."><img src=".base_url().'/assets/img/covers/th_cdcover.jpg'."></a></td>";	
