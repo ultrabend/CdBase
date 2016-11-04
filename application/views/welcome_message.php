@@ -44,30 +44,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 14px 0 14px 0;
 		padding: 12px 10px 12px 10px;
 	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
 	</style>
 </head>
 <body>
 
-<div id="container">
+<div class="container">
 	<h1>Welcome to CdBase !</h1>
 
 	<div id="body">
@@ -75,19 +56,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<code>Version 0.1</code>
 
-
-
 	</div>
 	<div class="row">
 		<div class="col-md-1"></div>
+		<div class="col-md-10"></div>
 		<div class="col-md-1">
 			<a href=" <?php echo site_url('cdking'); ?>">admin</a>
 		</div>
-		<div class="col-md-10">
-			<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-		</div>
 	</div>
-
 </div>
 
 </body>

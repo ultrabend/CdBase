@@ -6,22 +6,53 @@ class AddCd extends CI_Controller {
         public function __construct()
         {
                 parent::__construct();               
+                
+                $this->load->library('session');
+                $this->load->library('Musicbrainz');
+                $this->load->library('Url_picture');
                 $this->load->model('Addcd_model');
         }
 
+/***********   add manual **********************************************/
+        
         public function manual()
         {
         	$this->load->helper('form');
 	        $this->load->view('templates/header');
-			$this->load->view('manual');
+			$this->load->view('addcd/manual');
 			$this->load->view('templates/footer.php');
         }
+
+        public function addman()
+        {
+            $this->load->model('Addcd_model');     //model loaded
+            $test = $this->input->post('album');
+            if (isset($test)) {
+                $data = array(
+                    'title'=> $this->input->post('album'),
+                    'year'=> $this->input->post('year'),
+                    'nb_tracks'=> $this->input->post('tracks'),
+                    'label'=> $this->input->post('label'),
+                    'barcode'=> $this->input->post('barcode'),
+                    'band_id'=> $this->input->post('name'));
+            }
+            else{
+                redirect('AddCd/manual');
+            }
+            $tmp = $this->Addcd_model->check_artist($data['band_id']);
+            //print_r($tmp);die();
+            $data['band_id'] = $tmp;
+            $this->Addcd_model->insert_man($data);
+            redirect('Albums');
+        }
+
+/************** add release by title **************************/
 
         public function release(){
 
             $this->load->helper('form');
             $this->load->view('templates/header');
-            $this->load->view('release.php');
+            $this->load->view('addcd/release.php');
             $this->load->view('templates/footer.php');
 
         }
@@ -38,7 +69,7 @@ class AddCd extends CI_Controller {
                 redirect('AddCd/release');
             }
             $this->load->view('templates/header');
-            $this->load->view('release_list',$datas);
+            $this->load->view('addcd/release_list',$datas);
             $this->load->view('templates/footer.php');
         }
 
@@ -48,8 +79,7 @@ class AddCd extends CI_Controller {
             $this->Addcd_model->insert_man($_SESSION['album'][$i]);
             $id = $this->Addcd_model->check_id($_SESSION['album'][$i]['brainz_album']);
             $datas = $this->musicbrainz->discsearch($_SESSION['album'][$i]['brainz_album']);
-            
-            
+                    
             $j=0;
             foreach ($datas['media'] as $CD) {
                 $j++;
@@ -62,38 +92,18 @@ class AddCd extends CI_Controller {
                     $this->Addcd_model->insert_tracks($tracks);
                 }
             }
-            $this->Addcd_model->cover_recup($_SESSION['album'][$i]['brainz_album'],$_SESSION['album'][$i]['title']);
+            $this->url_picture->capture($_SESSION['album'][$i]['brainz_album'],$_SESSION['album'][$i]['title']);
             redirect('Cards/index/'.$id[0]['id']);
         }
 
 
-        public function addman()
-        {
-        	$this->load->model('Addcd_model');     //model loaded
-            $tmp = $this->input->post('album');
-            if (isset($tmp)) {
-                $data = array(
-                    'title'=> $this->input->post('album'),
-                    'year'=> $this->input->post('year'),
-                    'nb_tracks'=> $this->input->post('tracks'),
-                    'label'=> $this->input->post('label'),
-                    'barcode'=> $this->input->post('barcode'),
-                    'band_id'=> $this->input->post('name'));
-            }
-            else{
-                redirect('AddCd/manual');
-            }
-            $tmp = $this->Addcd_model->check_artist($data['band_id']);
-            $data['band_id'] = $tmp['0']['id'];
-            $this->Addcd_model->insert_man($data);
-            redirect('Albums');
-        }
+/********** Add with barcode **************************************/
 
         public function barcode(){
 
             $this->load->helper('form');
             $this->load->view('templates/header');
-            $this->load->view('barcode');
+            $this->load->view('addcd/barcode');
             $this->load->view('templates/footer.php');
 
         }
@@ -131,8 +141,31 @@ class AddCd extends CI_Controller {
                     $this->Addcd_model->insert_tracks($tracks);
                 }
             } 
-            $this->Addcd_model->cover_recup($album['brainz_album'],$album['title']);
+            $this->url_picture->capture($album['brainz_album'],$album['title']);
 
             redirect('Cards/index/'.$id[0]['id']);
+        }
+
+/************** import cd cover ***************************************/
+
+        public function import_cover(){
+
+            $this->load->helper('form');
+            $this->load->view('templates/header');
+            $this->load->view('addcd/import_cover');
+            $this->load->view('templates/footer.php');
+
+        }
+
+        public function download_cover(){
+            $url = $this->input->post('url');
+            //print_r($_SESSION['album']['title']);die();
+            //$title = urlencode($_SESSION['album']['title']);
+            $title= preg_replace('#[^0-9a-z]+#i', '-', $_SESSION['album']['title']);
+            print_r($title);die();
+            $this->url_picture->coverdown($url,$_SESSION['album']['title']);
+            redirect ('cards/index/'.$_SESSION['album']['id']);
+            //print_r($_SESSION['album']);die();
+
         }
 }        

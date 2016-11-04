@@ -13,7 +13,7 @@ class Albums extends CI_Controller {
         {
                 $datas['albums'] = $this->Albums_model->get_collection();
 		$this->load->view('templates/header');
-		$this->load->view('catalog',$datas);
+		$this->load->view('albums/catalog',$datas);
 		$this->load->view('templates/footer.php');
         }
 
@@ -21,7 +21,7 @@ class Albums extends CI_Controller {
         {
                 $datas['artists'] = $this->Albums_model->get_artists();
                 $this->load->view('templates/header');
-                $this->load->view('by_artist',$datas);
+                $this->load->view('albums/by_artist',$datas);
                 $this->load->view('templates/footer.php');
         }
 }

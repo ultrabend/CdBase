@@ -1,11 +1,11 @@
-<div id="page-wrapper">
+<div id="page-wrapper" class="container">
       <div class="row">
             <div class="col-md-12">
       	     <h1 class="page-header style0">Add CD</h1>
       	</div>
       </div>
       	
-      <div class="row container-fluid">
+      <div class="row">
             <div class="row">
                   <div class="col-md-2"></div>
                   <div class="col-md-4">
@@ -44,7 +44,7 @@
                         echo form_close();
                         ?>  
                   </div>
-                  <div class="col-md-2"></div>
+                  <div class="col-md-1"></div>
             </div>
             
       </div>

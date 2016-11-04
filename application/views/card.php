@@ -9,22 +9,24 @@
                     <tr>
                       <td>
                         <?php
-                          $file="img/covers/".$album[0]['title']."_front.jpg";
+                          $_SESSION['album'] = $album[0];
+                          $album[0]['title'] = str_replace(" ", "-", $album[0]['title']);
+                          $file="assets/img/covers/".$album[0]['title']."_front.jpg";
                           if (file_exists($file)) {
-                            echo"<img class='shadow' src='img/covers/".$title."_front.jpg' width='100%'>";
+                            echo"<img class='shadow' src='".base_url()."assets/img/covers/".$album[0]['title']."_front.jpg' width='100%'>";
                           }
                           else{
                             echo "<img class='shadow' src='".base_url()."/assets/img/covers/cdcover.jpg' width='100%'>";
                             echo "<br>";
                             echo "<br>";
-                            echo"<a href='#'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
+                            echo"<a href='".site_url('AddCd/import_cover')."'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
                           }?>
                       </td>
                     </tr>
                     <tr>
                       <td>
                         <br>
-                        <a class='btn btn-sm btn-danger' href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>">Delete</a>
+                        <a class='btn btn-sm btn-danger' href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>">Delete Album</a>
                       </td>
                     </tr>
                   </table>
