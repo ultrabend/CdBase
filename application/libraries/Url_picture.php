@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        $path = 'assets/img/covers';
 	        // L'url du fichier
 	        $url = "http://coverartarchive.org/release/".urlencode($id)."/front";
-	            
 	        if (file_get_contents($url)) {
 	            // On coupe le chemin
+	            //print_r("prout");die();
 	            $exp = explode('/',$url);
 	            // On recup l'adresse du serveur
 	            $serv = $exp[0].'//'.$exp[2];

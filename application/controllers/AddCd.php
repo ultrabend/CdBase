@@ -75,7 +75,12 @@ class AddCd extends CI_Controller {
 
         public function save_release($i){
             $this->load->model('Addcd_model');
+            // suppression majuscule accentuées
             $_SESSION['album'][$i]['band_id'] = $this->Addcd_model->check_artist($_SESSION['album'][$i]['band_id']);
+            $_SESSION['album'][$i]['title'] = htmlentities($_SESSION['album'][$i]['title'], ENT_NOQUOTES, 'utf-8');
+            $_SESSION['album'][$i]['title'] = preg_replace("/&(.)(acute|cedil|circ|ring|tilde|uml|grave);/", "$1", $_SESSION['album'][$i]['title']);
+            $_SESSION['album'][$i]['title'] = strtolower($_SESSION['album'][$i]['title']);
+            $_SESSION['album'][$i]['title'] = ucfirst($_SESSION['album'][$i]['title']);
             $this->Addcd_model->insert_man($_SESSION['album'][$i]);
             $id = $this->Addcd_model->check_id($_SESSION['album'][$i]['brainz_album']);
             $datas = $this->musicbrainz->discsearch($_SESSION['album'][$i]['brainz_album']);
@@ -92,6 +97,7 @@ class AddCd extends CI_Controller {
                     $this->Addcd_model->insert_tracks($tracks);
                 }
             }
+            //print_r($_SESSION['album'][$i]['title']);die();
             $this->url_picture->capture($_SESSION['album'][$i]['brainz_album'],$_SESSION['album'][$i]['title']);
             redirect('Cards/index/'.$id[0]['id']);
         }
@@ -160,10 +166,10 @@ class AddCd extends CI_Controller {
         public function download_cover(){
             $url = $this->input->post('url');
             //print_r($_SESSION['album']['title']);die();
-            //$title = urlencode($_SESSION['album']['title']);
-            $title= preg_replace('#[^0-9a-z]+#i', '-', $_SESSION['album']['title']);
-            print_r($title);die();
-            $this->url_picture->coverdown($url,$_SESSION['album']['title']);
+            $title = str_replace("'", "-", $_SESSION['album']['title']);
+            $title = str_replace(" ", "-", $title);
+            //print_r($title);die();
+            $this->url_picture->coverdown($url,$title);
             redirect ('cards/index/'.$_SESSION['album']['id']);
             //print_r($_SESSION['album']);die();
 

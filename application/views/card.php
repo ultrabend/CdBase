@@ -10,10 +10,11 @@
                       <td>
                         <?php
                           $_SESSION['album'] = $album[0];
-                          $album[0]['title'] = str_replace(" ", "-", $album[0]['title']);
-                          $file="assets/img/covers/".$album[0]['title']."_front.jpg";
+                          $title = str_replace("'", "-", $album[0]['title']);
+                          $title = str_replace(" ", "-", $title);
+                          $file="assets/img/covers/".$title."_front.jpg";
                           if (file_exists($file)) {
-                            echo"<img class='shadow' src='".base_url()."assets/img/covers/".$album[0]['title']."_front.jpg' width='100%'>";
+                            echo"<img class='shadow' src='".base_url().$file."' width='100%'>";
                           }
                           else{
                             echo "<img class='shadow' src='".base_url()."/assets/img/covers/cdcover.jpg' width='100%'>";

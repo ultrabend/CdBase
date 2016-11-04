@@ -31,7 +31,6 @@
 								foreach ($albums as $album) {
 								$i++;
 								$title=preg_replace('#[^0-9a-z]+#i', '-', $album['title']);
-								 
 								echo "<tr>";
 								echo "<td>".$i."</td>";
 								$album['title'] = str_replace(" ", "-", $album['title']);
