@@ -12,6 +12,14 @@ class Albums extends CI_Controller {
         public function index()
         {
                 $datas['albums'] = $this->Albums_model->get_collection();
+                //print_r(count($datas['albums']));
+                $max = count($datas['albums']);
+                $this->load->library('pagination');
+                $config['base_url'] = base_url('albums/index');
+                $config['total_rows'] = $max;
+                $config['per_page'] = 5;
+                $this->pagination->initialize($config);
+
 		$this->load->view('templates/header');
 		$this->load->view('albums/catalog',$datas);
 		$this->load->view('templates/footer.php');

@@ -5,9 +5,14 @@
 				<h1 class="page-header style0">Collection</h1>
 			</div>
 		</div>
-		<div class="row style1">
+		<div class="row">
 			<div class="col-md-12">
 				<div class="breadcrumb">
+				<?php 
+
+				echo $this->pagination->create_links();
+				 
+				 ?>
 				</div>
 			</div>
 		</div>
@@ -53,7 +58,7 @@
 							</tbody>
 						</table>
 							<div class="breadcrumb">
-
+							<?php echo $this->pagination->create_links(); ?>
 							</div>
 					</div>
 

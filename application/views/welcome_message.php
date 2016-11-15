@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<p>This is the new CdBase made with Code Igniter</p>
+		<span><img src="<?= base_url('assets/img/logo.png'); ?>" height="300px"></span>
 
 		<code>Version 0.2</code>
 

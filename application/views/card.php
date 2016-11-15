@@ -9,6 +9,7 @@
                     <tr>
                       <td>
                         <?php
+                          //$this->session->set_flashdata('id', $album[0]['id']);
                           $_SESSION['album'] = $album[0];
                           $title = str_replace("'", "-", $album[0]['title']);
                           $title = str_replace(" ", "-", $title);
