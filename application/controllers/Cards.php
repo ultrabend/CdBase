@@ -26,7 +26,7 @@ class Cards extends CI_Controller
 	public function delete($id){
 		$this->db->delete('albums', array('id' => $id));
 		$this->db->delete('tracks', array('album_id' => $id));
-		redirect('Albums');
+		redirect('Albums/index/0');
 	}
 
 	public function add_cover(){

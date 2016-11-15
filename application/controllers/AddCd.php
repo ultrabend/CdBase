@@ -43,7 +43,7 @@ class AddCd extends CI_Controller {
             //print_r($tmp);die();
             $data['band_id'] = $tmp;
             $this->Addcd_model->insert_man($data);
-            redirect('Albums');
+            redirect('Albums/index/0');
         }
 
 /************** add release by title **************************/

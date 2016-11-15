@@ -1,27 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CdBase</title>
-
 	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
+	
 
 	body {
-		background-color: #fff;
+		
 		margin: 40px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
 	}
 
 	h1 {
@@ -52,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>Welcome to CdBase !</h1>
 
 	<div id="body">
-		<p>This is the new CdBase made with Code Igniter</p>
+		<p>New CdBase made with Code Igniter</p>
 		<span><img src="<?= base_url('assets/img/logo.png'); ?>" height="300px"></span>
 
 		<code>Version 0.2</code>

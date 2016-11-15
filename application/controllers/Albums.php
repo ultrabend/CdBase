@@ -9,15 +9,22 @@ class Albums extends CI_Controller {
                 $this->load->model('Albums_model');
         }
 
-        public function index()
+        public function index($page)
         {
-                $datas['albums'] = $this->Albums_model->get_collection();
-                //print_r(count($datas['albums']));
-                $max = count($datas['albums']);
+                $datas['collection'] = $this->Albums_model->get_max();
+                $max = count($datas['collection']);                
+                unset($datas['collection']);
+                $limit = 20;
+                $datas['page'] = $page;
+                $datas['albums'] = $this->Albums_model->get_collection($limit,$page);
+                
                 $this->load->library('pagination');
-                $config['base_url'] = base_url('albums/index');
+                $config['base_url'] = site_url('albums/index');
                 $config['total_rows'] = $max;
-                $config['per_page'] = 5;
+                $config['per_page'] = $limit;
+                $config['first_url'] = site_url('Albums/index/0');
+                $config['next_link'] = "<img width=20px src='".base_url('assets/img/icons/arrow_right.png')."'>";
+                $config['prev_link'] = "<img width=20px src='".base_url('assets/img/icons/arrow_left.png')."'>";
                 $this->pagination->initialize($config);
 
 		$this->load->view('templates/header');
