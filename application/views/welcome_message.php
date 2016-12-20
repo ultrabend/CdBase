@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<code>
 			<div class="row">
-				<div class="col-md-2">Version 0.2</div>
+				<div class="col-md-2">Version 0.3</div>
 				<div class="col-md-9"></div>
 				<div class="col-md-1">
 					<a href="<?= site_url('Login');?>"><span class="glyphicon glyphicon-log-in"></span></a> 

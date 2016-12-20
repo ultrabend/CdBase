@@ -1,10 +1,10 @@
 <div id="page-wrapper">
-            <div class="container-fluid">
+            <div class="container">
               <div class="row">
                 <div><h1 class="page-header"><?php echo $album[0]['title']; ?></h1></div>
               </div>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <table>
                     <tr>
                       <td>
@@ -21,18 +21,25 @@
                             echo "<img class='shadow' src='".base_url()."/assets/img/covers/cdcover.jpg' width='100%'>";
                             echo "<br>";
                             echo "<br>";
-                            echo"<a href='".site_url('AddCd/import_cover')."'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
+                            //echo"<a href='".site_url('AddCd/import_cover')."'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
                           }?>
                       </td>
                     </tr>
                     <tr>
-                      <td>
-                        <br>
-                        <a class='btn btn-sm btn-danger' href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>">Delete Album</a>
+                      <td><br>
+                      <div class="row well">
+                        <div class="col-md-2"><?php 
+                        if (!file_exists($file)) {
+                            echo "<a href='".site_url('AddCd/import_cover')."'><span class='glyphicon glyphicon-picture'>Cover</span></a>";
+                          } ?></div>
+                        <div class="col-md-2"><a href=""><span class="glyphicon glyphicon-pencil">Edit</span></a></div>
+                        <div class="col-md-2"><a href=""><span class="glyphicon glyphicon-user">Band</span></a></div>
+                        <div class="col-md-3"><a target="blank" href="http://m.youtube.com/results?q=<?php echo $title; ?>"><span class="glyphicon glyphicon-headphones">Listen</span></a></div>
+                        <div class="col-md-2"><a href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>"><span class="glyphicon glyphicon-trash">Delete</span></a></div>
+                      </div>
                       </td>
                     </tr>
                   </table>
-
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-7">
