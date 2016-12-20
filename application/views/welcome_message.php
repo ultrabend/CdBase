@@ -44,16 +44,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>New CdBase made with Code Igniter</p>
 		<span><img src="<?= base_url('assets/img/logo.png'); ?>" height="300px"></span>
 
-		<code>Version 0.2</code>
+		<code>
+			<div class="row">
+				<div class="col-md-2">Version 0.2</div>
+				<div class="col-md-9"></div>
+				<div class="col-md-1">
+					<a href="<?= site_url('Login');?>"><span class="glyphicon glyphicon-log-in"></span></a> 
+				</div>
+			</div>
+		</code>
 
 	</div>
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10"></div>
-		<div class="col-md-1">
-			<!--<a href=" <?php echo site_url('cdking'); ?>">admin</a>-->
-		</div>
-	</div>
+
 </div>
 
 </body>

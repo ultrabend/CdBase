@@ -12,6 +12,7 @@ class Cards extends CI_Controller
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model('Cards_model');
+		$this->lang->load('header', 'english');
 	}
 
 	public function index($id)

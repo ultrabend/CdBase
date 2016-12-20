@@ -7,6 +7,7 @@ class Albums extends CI_Controller {
         {
                 parent::__construct();
                 $this->load->model('Albums_model');
+                $this->lang->load('header', 'english');
         }
 
         public function index($page)

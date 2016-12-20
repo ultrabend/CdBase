@@ -11,6 +11,7 @@ class AddCd extends CI_Controller {
                 $this->load->library('Musicbrainz');
                 $this->load->library('Url_picture');
                 $this->load->model('Addcd_model');
+                $this->lang->load('header', 'english');
         }
 
 /***********   add manual **********************************************/

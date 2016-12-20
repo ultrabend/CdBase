@@ -12,13 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <title>CdBase</title>
 
-        <!-- Bootstrap CSS -->
         <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-        <!-- Theme CSS -->
         <link href="<?= base_url('assets/bootstrap/css/portfolio-item.css'); ?>" rel="stylesheet">
-        <!-- Your CSS -->
         <link href="<?= base_url('assets/bootstrap/css/style.css'); ?>" rel="stylesheet">
-        <!-- Custom Fonts -->
         <link href="<?= base_url('assets/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
 
         <link rel="icon" href="img/favicon.ico" />
@@ -33,10 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                      <li><a href="<?= site_url('Albums/index/0') ?>" >Collection <span class="sr-only">(current)</span></a></li>
+                      <li><a href="<?= site_url('Albums/index/0') ?>" ><?= lang('Menu1') ?> <span class="sr-only">(current)</span></a></li>
                       <li><!--<a href="<?= site_url('Albums/by_artist') ?>">Albums by Artists<span class="sr-only">(current)</span></a>--></li>
                       <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Add CD <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Add CD <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?= site_url('AddCd/barcode') ?>">By barcode</a></li>
                                 <li><a href="<?= site_url('AddCd/release') ?>">By album title</a></li>
