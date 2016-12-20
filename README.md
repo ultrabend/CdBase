@@ -7,6 +7,7 @@ It's a simple CD collection browser using MusicBrainz to feed your CD database.
 Features:
   - Search album info, tracks and cover.
   - If cover are not available you can add another from web url.
+  - Shortcut to youtube for each album to listen it.
   - Bootstrap responsive design.
 
 How to install:
