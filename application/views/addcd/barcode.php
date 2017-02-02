@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div id="page-wrapper" class="container">
       	<div class="row">
       		<div class="col-md-12">
       			<h1 class="page-header style0">IMPORT WITH BARCODE</h1>

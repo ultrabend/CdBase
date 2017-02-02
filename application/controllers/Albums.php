@@ -15,7 +15,7 @@ class Albums extends CI_Controller {
                 $datas['collection'] = $this->Albums_model->get_max();
                 $max = count($datas['collection']);                
                 unset($datas['collection']);
-                $limit = 20;
+                $limit = 10;
                 $datas['page'] = $page;
                 $datas['albums'] = $this->Albums_model->get_collection($limit,$page);
                 
@@ -30,7 +30,7 @@ class Albums extends CI_Controller {
 
 		$this->load->view('templates/header');
 		$this->load->view('albums/catalog',$datas);
-		$this->load->view('templates/footer.php');
+		$this->load->view('templates/footer_collection.php');
         }
 
         public function by_artist()

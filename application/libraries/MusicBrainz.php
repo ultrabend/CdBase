@@ -11,12 +11,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        return $response;
 	    }*/
 
-	    public function release_search($release, $fmt = 'json') {
-	        $url = "http://musicbrainz.org/ws/2/release/?query=release:".urlencode($release)."&fmt=".$fmt;//."&artist=".urlencode($artist)."&fmt=".$fmt);
+	    public function release_search($release,$artist,$fmt = 'json') {
+	        $url = 'http://musicbrainz.org/ws/2/release/?query=release:'.urlencode($release).'%20AND%20artist:'.urlencode($artist).'&fmt='.$fmt;
 	        if ($fmt == 'json') {
 	          $ch = curl_init();
 	          curl_setopt($ch, CURLOPT_URL, $url);
 	          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	          //curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 50);
 	          curl_setopt($ch, CURLOPT_USERAGENT, 'CdBase');
 	          $response = curl_exec ($ch);
 	          curl_close($ch);

@@ -20,7 +20,7 @@ class Cards extends CI_Controller
 		$datas['album'] = $this->Cards_model->get_card($id);
 		$datas['tracks'] = $this->Cards_model->get_tracks($id);
 		$this->load->view('templates/header');
-		$this->load->view('card',$datas);
+		$this->load->view('cards/card',$datas);
 		$this->load->view('templates/footer.php');
 	}
 
@@ -30,8 +30,11 @@ class Cards extends CI_Controller
 		redirect('Albums/index/0');
 	}
 
-	public function add_cover(){
-		
+	public function artist_bio($id){
+		$datas['artist'] = $this->Cards_model->get_artist($id);
+		$this->load->view('templates/header');
+		$this->load->view('cards/artist_bio',$datas);
+		$this->load->view('templates/footer.php');
 	}
 }
  ?>

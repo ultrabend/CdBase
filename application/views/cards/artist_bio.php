@@ -10,7 +10,7 @@
                       <td>
                         <?php
                           //$this->session->set_flashdata('id', $album[0]['id']);
-                          $_SESSION['album'] = $album[0];
+                          $_SESSION['album'] = $album[0];                          
                           $title = str_replace("'", "-", $album[0]['title']);
                           $title = str_replace(" ", "-", $title);
                           $file="assets/img/covers/".$title."_front.jpg";
@@ -33,9 +33,9 @@
                             echo "<a href='".site_url('AddCd/import_cover')."'><span class='glyphicon glyphicon-picture'>Cover</span></a>";
                           } ?></div>
                         <div class="col-md-2"><a href=""><span class="glyphicon glyphicon-pencil">Edit</span></a></div>
-                        <div class="col-md-2"><a href=""><span class="glyphicon glyphicon-user">Band</span></a></div>
-                        <div class="col-md-3"><a target="blank" href="http://m.youtube.com/results?q=<?php echo $title; ?>"><span class="glyphicon glyphicon-headphones">Listen</span></a></div>
-                        <div class="col-md-2"><a href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>"><span class="glyphicon glyphicon-trash">Delete</span></a></div>
+                        <div class="col-md-2"><a href="<?= site_url('Bands/index/').$album[0]['name']; ?>"><span class="glyphicon glyphicon-user">Band</span></a></div>
+                        <div class="col-md-1"><a target="blank" href="http://m.youtube.com/results?q=<?php echo $title; ?>"><span class="glyphicon glyphicon-headphones"></span></a></div>
+                        <div class="col-md-1"><a href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>"><span class="glyphicon glyphicon-trash"></span></a></div>
                       </div>
                       </td>
                     </tr>
@@ -71,8 +71,15 @@
                               echo "<tr>";
                               echo "<td>".$data['id_track']."</td>";
                               echo "<td>".$data['title']."</td>";
-                              $tmp = floor($tracks[$i]['duration'] /60000).' : '.floor(($tracks[$i]['duration'] % 60000)/1000);
+                              if (strpos($tracks[$i]['duration'],':')) {
+                                $tmp = $tracks[$i]['duration'];
+                              }
+                              else{
+                                $tmp = floor($tracks[$i]['duration'] /60000).' : '.floor(($tracks[$i]['duration'] % 60000)/1000);  
+                              }
+                              
                               echo "<td>".$tmp."</td>";
+                              echo "<td><audio id='audioPlayer' src='hype_home.mp3'></audio></td>";
                               echo "</tr>";
                               }
                            ?>
