@@ -35,11 +35,9 @@
 								foreach ($albums as $album) {
 								$i++;
 								$title=$album['title'];
-								//$title=preg_replace('#[^0-9a-z]+#i', '-', $album['title']);
 								echo "<tr>";
 								echo "<td>".$i."</td>";
-								$album['title'] = str_replace("'", "-", $album['title']);
-								$album['title'] = str_replace(" ", "-", $album['title']);
+			                    $album['title']= preg_replace('#[^0-9a-z]+#i', '-', $album['title']);
 								$file="assets/img/covers/".$album['title']."_front.jpg";
                                	if (file_exists($file)) {
                                 	echo "<td data-tilt data-tilt-scale='1.2'><a href=".site_url('Cards/index/').$album['id']."><img class='shadow' width='100px' src=".base_url().$file."></a></td>";

@@ -9,10 +9,8 @@
                     <tr>
                       <td>
                         <?php
-    
-                          $_SESSION['album'] = $album[0];                          
-                          $title = str_replace("'", "-", $album[0]['title']);
-                          $title = str_replace(" ", "-", $title);
+                          $_SESSION['album'] = $album[0];                            
+                          $title= preg_replace('#[^0-9a-z]+#i', '-', $album[0]['title']);
                           $file="assets/img/covers/".$title."_front.jpg";
                           if (file_exists($file)) {
                             echo"<img class='shadow' src='".base_url().$file."' width='100%'>";
@@ -82,9 +80,7 @@
                               else{
                                 $tmp = floor($tracks[$i]['duration'] /60000).' : '.floor(($tracks[$i]['duration'] % 60000)/1000);  
                               }
-                              
                               echo "<td>".$tmp."</td>";
-                              echo "<td><audio id='audioPlayer' src='hype_home.mp3'></audio></td>";
                               echo "</tr>";
                               }
                            ?>

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	          $response = json_decode($response, JSON_FORCE_OBJECT);
 	          print_r(error_get_last());
 	        }
-	        return $response;
+	        	return $response;	        
 	    }
 
 	    public function DiscSearch($discid, $fmt = 'json') {

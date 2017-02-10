@@ -1,8 +1,6 @@
 <div id="page-wrapper" class="container">
-      	<div class="row">
-      		<div class="col-md-12">
-      			<h1 class="page-header style0">IMPORT WITH ALBUM TITLE</h1>
-      		</div>
+      	<div class="row"><div class="col-md-12">
+      			<h1 class="page-header style0">IMPORT WITH ALBUM TITLE</h1></div>
       	</div>
       	<div class="row">
         <div class="col-md-1"></div>
@@ -26,9 +24,7 @@
               </thead>
               <tbody>
                 <?php $i=0;
-                //print_r($albums);
                   foreach ($albums as $album) {
-                    //print_r($album);
                     $i=$i+1;
                     echo "<tr>";
                     echo "<td>".$i."</td>";
@@ -82,7 +78,7 @@
                       echo "<td></td>";
                     }
                     if (isset($album['country'])) {
-                      //$_SESSION['album'][$i]['country']=$album['country'];
+                      $_SESSION['album'][$i]['country']=$album['country'];
                       echo "<td>".$album['country']."</td>";
                     }
                     else {

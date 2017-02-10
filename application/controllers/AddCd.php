@@ -75,7 +75,6 @@ class AddCd extends CI_Controller {
         }
 
         public function save_release($i){
-            $this->load->model('Addcd_model');
             // suppression majuscule accentuées
             $_SESSION['album'][$i]['band_id'] = $this->Addcd_model->check_artist($_SESSION['album'][$i]['band_id']);
             $_SESSION['album'][$i]['title'] = htmlentities($_SESSION['album'][$i]['title'], ENT_NOQUOTES, 'utf-8');
@@ -98,7 +97,6 @@ class AddCd extends CI_Controller {
                     $this->Addcd_model->insert_tracks($tracks);
                 }
             }
-            //print_r($_SESSION['album'][$i]['title']);die();
             $this->url_picture->capture($_SESSION['album'][$i]['brainz_album'],$_SESSION['album'][$i]['title']);
             redirect('Cards/index/'.$id[0]['id']);
         }
@@ -166,29 +164,22 @@ class AddCd extends CI_Controller {
 
         public function download_cover(){
             $url = $this->input->post('url');
-            //print_r($_SESSION['album']['title']);die();
             $title = str_replace("'", "-", $_SESSION['album']['title']);
             $title = str_replace(" ", "-", $title);
-            //print_r($title);die();
             $this->url_picture->coverdown($url,$title);
-            redirect ('cards/index/'.$_SESSION['album']['id']);
-            //print_r($_SESSION['album']);die();
-
-        }
+            $album_id = $this->session->userdata('album_id');
+            redirect ('cards/index/'.$album_id);        }
 
 /************** Discogs add release  **************************/
 
         public function discogs_release(){
-
             $this->load->helper('form');
             $this->load->view('templates/header');
             $this->load->view('addcd/discogs_release.php');
             $this->load->view('templates/footer.php');
-
         }
 
-        public function discogs_release_list(){
-            
+        public function discogs_release_list(){           
             $release = $this->input->post('album');
             $artist = $this->input->post('artist');
 
@@ -199,7 +190,6 @@ class AddCd extends CI_Controller {
             else{
                 redirect('AddCd/discogs_release');
             }
-            //print_r($datas);die();
             $this->load->view('templates/header');
             $this->load->view('addcd/discogs_release_list',$datas);
             $this->load->view('templates/footer.php');
@@ -256,8 +246,7 @@ class AddCd extends CI_Controller {
                     $tracks['title']=$track['title'];
                     $tracks['duration']=$track['duration'];
                     $this->Addcd_model->insert_tracks($tracks);
-            }
-            
+            }  
             redirect('Cards/index/'.$id[0]['id']);
         }
 

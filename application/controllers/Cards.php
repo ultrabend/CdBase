@@ -15,11 +15,13 @@ class Cards extends CI_Controller
 		$this->lang->load('header', 'english');
 	}
 
-	public function index($id)
+	public function index($card)
 	{
        	$this->load->helper('form');
-		$datas['album'] = $this->Cards_model->get_card($id);
-		$datas['tracks'] = $this->Cards_model->get_tracks($id);
+       	$this->session->set_userdata('album_id',$card);
+       	//print_r($this->session->userdata('album_id'));die();
+		$datas['album'] = $this->Cards_model->get_card($card);
+		$datas['tracks'] = $this->Cards_model->get_tracks($card);
 		$this->load->view('templates/header');
 		$this->load->view('cards/card',$datas);
 		$this->load->view('templates/footer_card.php');
