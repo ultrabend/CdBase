@@ -9,7 +9,7 @@
                     <tr>
                       <td>
                         <?php
-                          //$this->session->set_flashdata('id', $album[0]['id']);
+    
                           $_SESSION['album'] = $album[0];                          
                           $title = str_replace("'", "-", $album[0]['title']);
                           $title = str_replace(" ", "-", $title);
@@ -21,7 +21,6 @@
                             echo "<img class='shadow' src='".base_url()."/assets/img/covers/cdcover.jpg' width='100%'>";
                             echo "<br>";
                             echo "<br>";
-                            //echo"<a href='".site_url('AddCd/import_cover')."'><button type='button' class='btn btn-sm btn-warning'>Add Cover</button></a>";
                           }?>
                       </td>
                     </tr>
@@ -29,9 +28,17 @@
                       <td><br>
                       <div class="row well">
                         <div><?php 
-                        if (!file_exists($file)) {
-                            echo "<a href='".site_url('AddCd/import_cover')."'><span id='cover' class='red glyphicon glyphicon-picture'> Download Cover</span></a>";
-                          } ?></div><br>
+                          if (!file_exists($file)) {
+                              echo '<a type="button" onclick="load_cover();"><span class="red glyphicon glyphicon-picture"> Download Cover</span></a>';} ?>
+                        </div><br>
+                          <div id="cover" style="display:none">
+                            <?php echo form_open('AddCd/download_cover', 'role="form"');?>
+                            <div class="form-group input-group">
+                                <input class="form-control" name="url" placeholder="Url" id='url' required="" type="text" />
+                                <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
+                            </div>
+                            <?php echo '</form>';?> 
+                          </div>
                         <div><a target="blank" href="http://m.youtube.com/results?q=<?php echo $title; ?>"><span class="glyphicon glyphicon-headphones"> Listen</span></a></div><br>
                         <div><a href="<?php echo (site_url('Cards/delete/').$album['0']['id']) ?>"><span class="glyphicon glyphicon-trash"> Delete</span></a></div>
                       </div>

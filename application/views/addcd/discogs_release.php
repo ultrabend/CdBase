@@ -6,7 +6,7 @@
       	</div>
       	<div class="row">
       		<div class="col-md-3 center"><?php echo "<img src=".base_url()."assets/img/discogs_logo.png width=100%>" ?></div>
-      	    <div class="col-md-5">
+      	      <div class="col-md-5">
       	        <?php echo form_open('AddCd/discogs_release_list', 'role="form"');?>
       	            <div>
       								<br>
@@ -20,7 +20,8 @@
                       </div>
       							</div>
       	        <?php echo '</form>'; ?> 
-      	    </div>
-      			<div class="col-md-4"></div>
-      	</div>
+      	      </div>
+                  <div class="col-md-4"></div>
+      	</div><br>
+            <div><span>(no cover art will be donwload)</span></div>
       </div>

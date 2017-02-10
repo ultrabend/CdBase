@@ -10,7 +10,6 @@ class Bands extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('session');
 		$this->load->model('Bands_model');
 		$this->lang->load('header', 'english');
 	}

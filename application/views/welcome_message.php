@@ -45,7 +45,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-2">Version 0.3</div>
 					<div class="col-md-9"></div>
 					<div class="col-md-1">
-						<a href="<?= site_url('Login');?>"><span class="glyphicon glyphicon-log-in"></span></a> 
+		            <?php 
+		                if ($this->session->userdata('username')) {
+		                  echo '<a id="logo" href='.site_url('Settings').'><span class="glyphicon glyphicon-dashboard"></span></a>';
+		                  echo '<a id="logo" href='.site_url('login/logoff').'><span class="glyphicon glyphicon-log-out"></span></a>';
+		                }
+		                else{
+		                  echo '<a href='.site_url('login').'><span class="glyphicon glyphicon-log-in"></span></a>';
+		                }
+		            ?>	
 					</div>
 				</div>
 			</code>

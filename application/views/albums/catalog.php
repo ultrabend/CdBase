@@ -56,11 +56,7 @@
 									?>
 							</tbody>
 						</table>
-							<div class="breadcrumb">
-								<?php echo $this->pagination->create_links(); ?>
-							</div>
 					</div>
-
 				</div>
 		</div>
 	</div>

@@ -7,16 +7,13 @@ class Login extends CI_Controller
      {
           parent::__construct();
           $this->lang->load(array('header'),'english');
-          $this->load->library('session');
           $this->load->helper('form');
-          //$this->load->helper('url');
           $this->load->helper('html');
-          $this->load->database();
           $this->load->library('form_validation');
           $this->load->model('login_model');
      }
 
-     public function index()
+      public function index()
      {
           $username = $this->input->post("input-username");
           $password = $this->input->post("input-password");
@@ -24,13 +21,7 @@ class Login extends CI_Controller
           $this->form_validation->set_rules("input-username", "Username", "trim|required");
           $this->form_validation->set_rules("input-password", "Password", "trim|required");
 
-          if ($this->form_validation->run() == FALSE)
-          {
-               $this->load->view('templates/header');
-               $this->load->view('login_view');
-               $this->load->view('templates/footer');
-          }
-          else
+          if ($this->form_validation->run() == TRUE)
           {
                if ($this->input->post('btn_login') == "Login")
                {
@@ -43,9 +34,8 @@ class Login extends CI_Controller
                               'language' => $usr_data[0]['language'],
                               'loginuser' => TRUE
                          );
-                         //print_r($sessiondata);die();
                          $this->session->set_userdata($sessiondata);
-                         redirect("Albums/index/0");
+                         redirect('Settings');
                     }
                }
                else
@@ -53,5 +43,20 @@ class Login extends CI_Controller
                     redirect('Login');
                }
           }
+          else
+          {
+               $this->load->view('templates/header');
+               $this->load->view('login_view');
+               $this->load->view('templates/footer');
+               
+          }
      }
-}?>
+
+     public function logoff()
+     {
+          $this->session->sess_destroy();
+          redirect("Welcome");
+     }
+
+}
+?>

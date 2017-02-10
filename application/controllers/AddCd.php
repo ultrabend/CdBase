@@ -7,7 +7,6 @@ class AddCd extends CI_Controller {
         {
                 parent::__construct();               
                 
-                $this->load->library('session');
                 $this->load->library('Musicbrainz');
                 $this->load->library('Discogs');
                 $this->load->library('Url_picture');
@@ -42,7 +41,6 @@ class AddCd extends CI_Controller {
                 redirect('AddCd/manual');
             }
             $tmp = $this->Addcd_model->check_artist($data['band_id']);
-            //print_r($tmp);die();
             $data['band_id'] = $tmp;
             $this->Addcd_model->insert_man($data);
             redirect('Albums/index/0');
@@ -168,7 +166,7 @@ class AddCd extends CI_Controller {
 
         public function download_cover(){
             $url = $this->input->post('url');
-            print_r($_SESSION['album']['title']);die();
+            //print_r($_SESSION['album']['title']);die();
             $title = str_replace("'", "-", $_SESSION['album']['title']);
             $title = str_replace(" ", "-", $title);
             //print_r($title);die();
