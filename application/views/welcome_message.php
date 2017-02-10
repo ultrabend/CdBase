@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<span><img src="<?= base_url('assets/img/logo.png'); ?>" height="300px"><strong>For Discogs and MusicBrainz</strong></span>
 			<code>
 				<div class="row">
-					<div class="col-md-2">Version 0.3</div>
+					<div class="col-md-2">Version 0.31</div>
 					<div class="col-md-9"></div>
 					<div class="col-md-1">
 		            <?php 

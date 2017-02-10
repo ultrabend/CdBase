@@ -17,5 +17,5 @@
             </div>
             <div class="col-md-4"></div>
       </div><br>
-      <div><span>(no cover art will be donwload)</span></div>
+      <div><span>(no cover art will be donwloaded)</span></div>
 </div>
